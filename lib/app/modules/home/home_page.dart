@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ze_gotinha/app/modules/consulta/consulta_page.dart';
 import 'package:ze_gotinha/app/modules/home/home_store.dart';
+import 'package:ze_gotinha/app/modules/vacina/vacina_page.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -19,12 +21,19 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
 
     _tabController(int option) {
       switch (option) {
-        case 0: print(0); break;
-        case 1: print(1);break;
-        case 2: print(2);break;
-        case 3: print(3);break;
+        case 0:
+          controller.setpage(Container());
+          break;
+        case 1:
+          controller.setpage(VacinaPage());
+          break;
+        case 2:
+          controller.setpage(ConsultaPage());
+          break;
+        case 3:
+          controller.setpage(Container());
+          break;
       }
-
     }
 
     return Scaffold(
@@ -34,7 +43,8 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         height: _height,
         width: _width,
         child: Column(children: [
-          Container( //********************************************************* Navigation bar */
+          Container(
+            //********************************************************* Navigation bar */
             margin: const EdgeInsets.only(top: 40),
             width: _width * .5,
             decoration: BoxDecoration(
@@ -44,7 +54,8 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             child: DefaultTabController(
               length: 4,
               child: TabBar(
-                labelColor: Theme.of(context).colorScheme.onSecondary,
+                labelColor: Theme.of(context).colorScheme.onPrimary,
+                unselectedLabelColor: Theme.of(context).colorScheme.onSecondary,
                 indicator: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.circular(20),
@@ -71,6 +82,21 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               ),
             ),
           ),
+          Observer(builder: (_) {
+            return Container(
+              //**************************************************************** White box
+              height: _height * .75,
+              width: _width * .6,
+              margin: const EdgeInsets.only(top: 40),
+              //color: ThemeData.light().cardColor,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+
+              child: controller.page,
+            );
+          })
         ]),
       ),
     );
