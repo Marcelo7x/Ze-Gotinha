@@ -1,6 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ze_gotinha/app/modules/consulta/consulta_module.dart';
 import 'package:ze_gotinha/app/modules/consulta/consulta_store.dart';
+import 'package:ze_gotinha/app/modules/search/search_module.dart';
+import 'package:ze_gotinha/app/modules/search/search_store.dart';
 import 'package:ze_gotinha/app/modules/vacina/vacina_module.dart';
 import 'package:ze_gotinha/app/modules/vacina/vacina_store.dart';
 import '../home/home_store.dart'; 
@@ -13,6 +15,7 @@ class HomeModule extends Module {
     Bind.lazySingleton((i) => HomeStore()),
     Bind.lazySingleton((i) => VacinaStore()),
     Bind.lazySingleton((i) => ConsultaStore()),
+    Bind.lazySingleton((i) => SearchStore()),
  ];
 
  @override
@@ -20,5 +23,6 @@ class HomeModule extends Module {
    ChildRoute(Modular.initialRoute, child: (_, args) => HomePage()),
    ModuleRoute("/vacina", module: VacinaModule()),
    ModuleRoute("/consulta", module: ConsultaModule()),
+   //ModuleRoute("/search", module: SearchModule()),
  ];
 }

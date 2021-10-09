@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ze_gotinha/app/modules/consulta/consulta_page.dart';
 import 'package:ze_gotinha/app/modules/home/home_store.dart';
+import 'package:ze_gotinha/app/modules/search/search_page.dart';
 import 'package:ze_gotinha/app/modules/vacina/vacina_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,10 +20,12 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
     double _height = MediaQuery.of(context).size.height; //screen height
     double _width = MediaQuery.of(context).size.width; //screen width
 
+    final _searchController = TextEditingController();
+
     _tabController(int option) {
       switch (option) {
         case 0:
-          controller.setpage(Container());
+          controller.setpage(SearchPage());
           break;
         case 1:
           controller.setpage(VacinaPage());
@@ -35,6 +38,8 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
           break;
       }
     }
+
+    _tabController(0); //Fazer o Search aparecer como padrao
 
     return Scaffold(
       body: Container(
@@ -53,6 +58,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             ),
             child: DefaultTabController(
               length: 4,
+              initialIndex: 0,
               child: TabBar(
                 labelColor: Theme.of(context).colorScheme.onPrimary,
                 unselectedLabelColor: Theme.of(context).colorScheme.onSecondary,
@@ -84,18 +90,16 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
           ),
           Observer(builder: (_) {
             return Container(
-              //**************************************************************** White box
-              height: _height * .75,
-              width: _width * .6,
-              margin: const EdgeInsets.only(top: 40),
-              //color: ThemeData.light().cardColor,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
-              ),
-
-              child: controller.page,
-            );
+                //**************************************************************** White box
+                height: _height * .75,
+                width: _width * .6,
+                margin: const EdgeInsets.only(top: 40),
+                //color: ThemeData.light().cardColor,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                ),
+                child: controller.page);
           })
         ]),
       ),

@@ -1,3 +1,4 @@
-2021/10/08-04:16:17.009 fa03 Reusing MANIFEST /private/var/folders/wm/jrdxl9gj70b3wmf92269dpth0000gn/T/flutter_tools.EPzeXl/flutter_tools_chrome_device.8CvAKs/Default/Service Worker/Database/MANIFEST-000001
-2021/10/08-04:16:17.009 fa03 Recovering log #3
-2021/10/08-04:16:17.009 fa03 Reusing old log /private/var/folders/wm/jrdxl9gj70b3wmf92269dpth0000gn/T/flutter_tools.EPzeXl/flutter_tools_chrome_device.8CvAKs/Default/Service Worker/Database/000003.log 
+2021/10/09-01:17:11.748 e003 Reusing MANIFEST /private/var/folders/wm/jrdxl9gj70b3wmf92269dpth0000gn/T/flutter_tools.1725Y8/flutter_tools_chrome_device.Kx2RvP/Default/Service Worker/Database/MANIFEST-000001
+2021/10/09-01:17:11.748 e003 Recovering log #3
+2021/10/09-01:17:11.749 e003 (ignoring error) /private/var/folders/wm/jrdxl9gj70b3wmf92269dpth0000gn/T/flutter_tools.1725Y8/flutter_tools_chrome_device.Kx2RvP/Default/Service Worker/Database/000003.log: dropping 10687 bytes; Corruption: checksum mismatch
+2021/10/09-01:17:11.749 e003 Reusing old log /private/var/folders/wm/jrdxl9gj70b3wmf92269dpth0000gn/T/flutter_tools.1725Y8/flutter_tools_chrome_device.Kx2RvP/Default/Service Worker/Database/000003.log 

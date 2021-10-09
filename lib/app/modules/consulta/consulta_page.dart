@@ -12,12 +12,11 @@ class ConsultaPage extends StatefulWidget {
 }
 
 class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
-
-
   @override
   Widget build(BuildContext context) {
-    
-    return Container(child: Text("Consulta"));
-  }
+    final _width = MediaQuery.of(context).size.width;
+    final _height = MediaQuery.of(context).size.height;
 
+    return Container(child:Text("Consulta"));
+  }
 }
