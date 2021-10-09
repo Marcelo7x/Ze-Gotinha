@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ze_gotinha/app/modules/login/login_store.dart';
+import 'package:ze_gotinha/app/modules/widgets/button.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;
@@ -106,52 +107,28 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                           style: const TextStyle(fontSize: 20)),
                     ),
                   ),
-                  Container(  //*********************************************************Loggin Button */
-                      margin: const EdgeInsets.only(top: 20),
-                      width: 120,
-                      height: 50,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            controller.setUserPassword(
-                                _username.value.text.toString(),
-                                _password.value.text.toString());
-                            controller.login()?
-                              Modular.to.pushNamed("/home-medico") :  () {};
-                          },
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.hovered)) {
-                                  return Theme.of(context)
-                                      .colorScheme
-                                      .secondary;
-                                }
-                                return ThemeData.light()
-                                    .primaryColor; // Use the component's default.
-                              },
-                            ),
-                          ),
-                          child: const Text("Entrar",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              )))),
+                  Container(
+                    //*********************************************************Loggin Button */
+                    margin: const EdgeInsets.only(top: 20),
+                    width: 120,
+                    height: 50,
+                    child: elevatedButton(context, "Entrar", () {
+                      Modular.to.pushNamed("/home-medico");
+                    })),
                   Padding(
-                      //********************************************************Error text
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Observer(builder: (_) {
-                        return Text(
-                          controller.logginError
-                              ? "Senha ou Úsuario incorreto. Verifique e tente novamente."
-                              : "",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                        );
-                      }))
+                    //********************************************************Error text
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Observer(builder: (_) {
+                      return Text(
+                        controller.logginError
+                            ? "Senha ou Úsuario incorreto. Verifique e tente novamente."
+                            : "",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                      );
+                    }))
                 ],
               ),
             ),

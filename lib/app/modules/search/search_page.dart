@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ze_gotinha/app/modules/search/search_store.dart';
+import 'package:ze_gotinha/app/modules/widgets/button.dart';
 
 class SearchPage extends StatefulWidget {
   final String title;
@@ -22,6 +23,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
     return Container(
       //********************************************************* Search */
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             width: _width * .46,
@@ -29,7 +31,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
             margin: const EdgeInsets.only(top: 20),
             decoration: BoxDecoration(
                 borderRadius: const BorderRadius.horizontal(
-                    left: Radius.circular(20), right: Radius.circular(20)),
+                    left: Radius.circular(16), right: Radius.circular(16)),
                 color: Colors.white,
                 border: Border.all(color: Colors.black)),
             child: Row(
@@ -57,31 +59,18 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                     height: 50,
                     //decoration: BoxDecoration(
                     //borderRadius: BorderRadius.circular(20)),
-                    child: ElevatedButton(
-                        onPressed: () {},
-                        style: ButtonStyle(
-                          shape: MaterialStateProperty.all(
-                              const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(20),
-                                      bottomRight: Radius.circular(20)))),
-                          backgroundColor:
-                              MaterialStateProperty.resolveWith<Color>(
-                            (Set<MaterialState> states) {
-                              if (states.contains(MaterialState.hovered)) {
-                                return Theme.of(context).colorScheme.secondary;
-                              }
-                              return ThemeData.light()
-                                  .primaryColor; // Use the component's default.
-                            },
-                          ),
-                        ),
-                        child: const Text("Busca Paciente",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            )))),
+                    child: elevatedButton(context, "Buscar Paciente", (){})),
+              ],
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(height: 35, child: elevatedButton(context, "Solicitar Vinculo", (){})),
+                SizedBox(height: 35, child: elevatedButton(context, "Fazer Consulta", (){})),
               ],
             ),
           ),
