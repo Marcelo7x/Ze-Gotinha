@@ -24,7 +24,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
     return Scaffold(
       body: Container(
         //* ******************************************************************** Backgroud
-        color: ThemeData.light().backgroundColor,
+        color: Theme.of(context).colorScheme.primary,
         height: _height,
         width: _width,
         child: Column(
@@ -55,7 +55,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
               //color: ThemeData.light().cardColor,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.surface,
               ),
 
               child: Column(
@@ -108,27 +108,33 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                     ),
                   ),
                   Container(
-                    //*********************************************************Loggin Button */
-                    margin: const EdgeInsets.only(top: 20),
-                    width: 120,
-                    height: 50,
-                    child: elevatedButton(context, "Entrar", () {
-                      Modular.to.pushNamed("/home-medico");
-                    })),
+                      //*********************************************************Loggin Button */
+                      margin: const EdgeInsets.only(top: 20),
+                      width: 120,
+                      height: 50,
+                      child: elevatedButton(context, "Entrar", () {
+                        controller.setUserPassword(_username.text.toString(),
+                            _password.text.toString());
+                        controller.login();
+
+                        controller.logginError == false
+                            ? Modular.to.pushNamed("/home-medico/")
+                            : () {};
+                      })),
                   Padding(
-                    //********************************************************Error text
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Observer(builder: (_) {
-                      return Text(
-                        controller.logginError
-                            ? "Senha ou Úsuario incorreto. Verifique e tente novamente."
-                            : "",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Theme.of(context).colorScheme.error,
-                        ),
-                      );
-                    }))
+                      //********************************************************Error text
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Observer(builder: (_) {
+                        return Text(
+                          controller.logginError
+                              ? "Senha ou Úsuario incorreto. Verifique e tente novamente."
+                              : "",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        );
+                      }))
                 ],
               ),
             ),
@@ -145,29 +151,20 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         fontSize: 18,
                         decoration: TextDecoration.none,
                         fontWeight: FontWeight.normal,
-                        color: Colors.black87,
-                        shadows: [
-                          Shadow(
-                              color: Colors.white60,
-                              offset: Offset.fromDirection(1, 2),
-                              blurRadius: 1)
-                        ]),
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        
+                        ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
                     child: Text(
-                      "Cadastra-se",
+                      "Cadastre-se",
                       style: TextStyle(
-                          fontSize: 19,
-                          decoration: TextDecoration.none,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                          shadows: [
-                            Shadow(
-                                color: Colors.white60,
-                                offset: Offset.fromDirection(1, 2),
-                                blurRadius: 1)
-                          ]),
+                        fontSize: 19,
+                        decoration: TextDecoration.none,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
                     ),
                   )
                 ],
