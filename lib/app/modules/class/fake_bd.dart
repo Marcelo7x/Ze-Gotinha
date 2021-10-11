@@ -3,25 +3,28 @@ import 'package:ze_gotinha/app/modules/class/usuario.dart';
 
 class BD {
   List<Usuario> _users = [
-    Usuario("Calos", "12345678901"),
+    Usuario("Carlos", "12345678901"),
     Usuario("Larissa", "09876543210"),
     Usuario("Marcelo", "12345098760"),
   ];
 
   List<Usuario> get usuarios => _users;
 
-  List<Usuario>? searchUsers({String? s}) {
-    if (s == null) {
+  List<Usuario>? searchUsers({String s = ""}) {
+    if (s == "") {
       return _users;
     }
 
     List<Usuario>? list;
     _users.forEach((element) {
-      if (element.name.compareTo(s) == true ||
-          element.cpf.compareTo(s) == true) {
+      print("${element.name} , ${s}");
+      if (element.name.toLowerCase().compareTo(s.toLowerCase()) == 0 ||
+          element.cpf.toLowerCase().compareTo(s.toLowerCase()) == 0) {
         list != null ? list?.add(element) : list = [element];
       }
     });
+    
+    if (list == null) {return _users;}
 
     return list;
   }

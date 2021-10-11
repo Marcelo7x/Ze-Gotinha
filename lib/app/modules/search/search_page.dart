@@ -17,7 +17,9 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
   Widget build(BuildContext context) {
     final _width = MediaQuery.of(context).size.width;
     final _height = MediaQuery.of(context).size.height;
-    
+
+    final _searchController = TextEditingController();
+
     var _pacientes = controller.getPacientes();
 
     _getDataRows() {
@@ -29,6 +31,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
       ];
 
       for (var i = 0; i < _pacientes.length; i++) {
+        print("a");
         _dataRows.add(DataRow(
             selected: _pacientes[i]["cpf"] == controller.cpf,
             onSelectChanged: (s) {
@@ -68,7 +71,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                   padding: const EdgeInsets.only(left: 10),
                   child: TextField(
                       //login
-                      //controller: ,
+                      controller: _searchController,
                       autofocus: true,
                       decoration: InputDecoration(
                           border: InputBorder.none,
@@ -84,7 +87,12 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                     height: 50,
                     //decoration: BoxDecoration(
                     //borderRadius: BorderRadius.circular(20)),
-                    child: elevatedButton(context, "Buscar Paciente", () {})),
+                    child: elevatedButton(context, "Buscar Paciente", () {
+                      _pacientes =
+                          controller.getPacientes(s: _searchController.text);
+                      controller.setCpf("");
+                      //_getDataRows();
+                    })),
               ],
             ),
           ),
