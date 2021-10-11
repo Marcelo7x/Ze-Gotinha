@@ -7,7 +7,7 @@ import 'search_page.dart';
 class SearchModule extends Module {
   @override
   final List<Bind> binds = [
- Bind.lazySingleton((i) => SearchStore()),
+    Bind.lazySingleton((i) => SearchStore()),
  ];
 
  @override

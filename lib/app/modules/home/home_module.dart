@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ze_gotinha/app/modules/class/usuario.dart';
 import 'package:ze_gotinha/app/modules/consulta/consulta_module.dart';
 import 'package:ze_gotinha/app/modules/consulta/consulta_store.dart';
 import 'package:ze_gotinha/app/modules/search/search_module.dart';

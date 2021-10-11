@@ -17,7 +17,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
   Widget build(BuildContext context) {
     final _width = MediaQuery.of(context).size.width;
     final _height = MediaQuery.of(context).size.height;
-
+    
     var _pacientes = controller.getPacientes();
 
     _getDataRows() {
@@ -113,8 +113,6 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                 SizedBox(
                     height: 35,
                     child: elevatedButton(context, "Solicitar Vinculo", () {
-                      
-
                       showDialog(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
