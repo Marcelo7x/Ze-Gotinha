@@ -40,7 +40,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
             selected: _pacientes[i]["cpf"] == controller.cpf,
             onSelectChanged: (s) {
               controller.setCpf(_pacientes[i]["cpf"]);
-              _getDataRows();
+              //_getDataRows();
             },
             cells: <DataCell>[
               DataCell(Text(_pacientes[i]["name"]!)),
