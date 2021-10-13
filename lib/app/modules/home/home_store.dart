@@ -14,7 +14,7 @@ abstract class HomeStoreBase with Store {
   Widget page = Card();
 
   @action
-  setpage(Widget pg) {
+  setpage(Widget pg) { //seta a paginha que fica dentro do quando branco na HOME
     page = pg;
   }
 }

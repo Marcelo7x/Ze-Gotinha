@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ze_gotinha/app/modules/class/loggin.dart';
+import 'package:ze_gotinha/app/modules/consulta/consulta_page.dart';
+import 'package:ze_gotinha/app/modules/home/home_module.dart';
+import 'package:ze_gotinha/app/modules/home/home_store.dart';
 import 'package:ze_gotinha/app/modules/search/search_store.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
 
@@ -20,8 +24,9 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
 
     final _searchController = TextEditingController();
 
-    var _pacientes = controller.getPacientes();
+    final Map _user = Modular.get(defaultValue: Loggin.loggin);
 
+    var _pacientes = controller.getPacientes();
     _getDataRows() {
       List<DataRow> _dataRows = [
         DataRow(cells: <DataCell>[
@@ -31,7 +36,6 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
       ];
 
       for (var i = 0; i < _pacientes.length; i++) {
-        print("a");
         _dataRows.add(DataRow(
             selected: _pacientes[i]["cpf"] == controller.cpf,
             onSelectChanged: (s) {
@@ -90,7 +94,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                     child: elevatedButton(context, "Buscar Paciente", () {
                       _pacientes =
                           controller.getPacientes(s: _searchController.text);
-                      controller.setCpf("");
+                      controller.setCpf(""); //como isso atualiza a tabela
                       //_getDataRows();
                     })),
               ],
@@ -121,10 +125,23 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                 SizedBox(
                     height: 35,
                     child: elevatedButton(context, "Solicitar Vinculo", () {
+                      var v =
+                          controller.getViculacion(int.parse(_user["user"]));//verifica se ja esta vinculado
+
+                      if (!v && controller.cpf != "") {//faz vinculo
+                        controller
+                            .setmedicoVinculacion(int.parse(_user["user"]));
+                      }
+
                       showDialog(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
-                          title: const Text("Paciente Vinculado com Sucesso"),
+                          title: v == true
+                              ? Text("Você já está viculado a esste paciente.")
+                              : controller.cpf != ""
+                                  ? Text("Paciente Vinculado com Sucesso")
+                                  : Text(
+                                      "Você deve selecionar um paciente antes de solicitar um vinculo."),
                           actions: [
                             elevatedButton(context, "OK", () {
                               Navigator.pop(context);
@@ -135,7 +152,30 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                     })),
                 SizedBox(
                     height: 35,
-                    child: elevatedButton(context, "Fazer Consulta", () {})),
+                    child: elevatedButton(context, "Fazer Consulta", () {
+                      final v =
+                          controller.getViculacion(int.parse(_user["user"]));//verifica se esta vinculado
+                      if (!v) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: controller.cpf == ""? Text("Selecione um Paciente para fazer a consulta e tente novamente.") : Text(
+                                "Você não está vinculado a este paciente. \nSolicite o vinculo antes de prosseguir para a consulta."),
+                            actions: [
+                              elevatedButton(context, "OK", () {
+                                Navigator.pop(context);
+                              }),
+                            ],
+                          ),
+                        );
+                      } else {
+                        var home =
+                            Modular.get<HomeStore>(defaultValue: HomeStore());//Pega a instancia de HomeStore que esta injetada com singleton
+                        home.setpage(ConsultaPage());//Altero a pagina que esta no quadro braco, normalmente usaria um
+                                                      //"Modular.to.pushNamed("/consulta")", mas desse jeito carregariamos uma nova pagina, sobrescrevendo
+                                                      //nossa Home.
+                      }
+                    })),
               ],
             ),
           ),

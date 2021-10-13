@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ze_gotinha/app/modules/class/loggin.dart';
 import 'package:ze_gotinha/app/modules/login/login_store.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
 
@@ -20,6 +21,11 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
 
     final _username = TextEditingController();
     final _password = TextEditingController();
+
+    getUser() {
+      final user = Modular.get(defaultValue: Loggin.loggin);
+      return user;
+    }
 
     return Scaffold(
       body: Container(
@@ -115,11 +121,15 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                       child: elevatedButton(context, "Entrar", () {
                         controller.setUserPassword(_username.text.toString(),
                             _password.text.toString());
-                        controller.login();
+                        //controller.login();
 
-                        controller.logginError == false
-                            ? Modular.to.pushNamed("/home-medico/")
-                            : () {};
+                        // controller.logginError == false
+                        //     ? Modular.to.pushNamed("/home-medico/")
+                        //     : () {};
+
+                        if (controller.login()) {
+                          Modular.to.pushNamed("/home/${getUser()["type"]}/");
+                        }
                       })),
                   Padding(
                       //********************************************************Error text
@@ -148,12 +158,11 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                   Text(
                     "Não tem conta? ",
                     style: TextStyle(
-                        fontSize: 18,
-                        decoration: TextDecoration.none,
-                        fontWeight: FontWeight.normal,
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        
-                        ),
+                      fontSize: 18,
+                      decoration: TextDecoration.none,
+                      fontWeight: FontWeight.normal,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 20),

@@ -13,7 +13,7 @@ import 'home_page.dart';
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => HomeStore()),
+    Bind.singleton((i) => HomeStore()),
     Bind.lazySingleton((i) => VacinaStore()),
     Bind.lazySingleton((i) => ConsultaStore()),
     Bind.lazySingleton((i) => SearchStore()),
@@ -22,8 +22,8 @@ class HomeModule extends Module {
  @override
  final List<ModularRoute> routes = [
    ChildRoute(Modular.initialRoute, child: (_, args) => HomePage()),
-   ModuleRoute("/vacina", module: VacinaModule()),
-   ModuleRoute("/consulta", module: ConsultaModule()),
-   //ModuleRoute("/search", module: SearchModule()),
+   ModuleRoute("/vacina/", module: VacinaModule()),
+   ModuleRoute("/consulta/", module: ConsultaModule()),
+   //ModuleRoute("/search/", module: SearchModule()),
  ];
 }

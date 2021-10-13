@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ze_gotinha/app/modules/class/loggin.dart';
+import 'package:ze_gotinha/app/modules/class/medico.dart';
 import 'package:ze_gotinha/app/modules/consulta/consulta_page.dart';
 import 'package:ze_gotinha/app/modules/home/home_store.dart';
 import 'package:ze_gotinha/app/modules/search/search_page.dart';
@@ -20,9 +22,13 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
     double _height = MediaQuery.of(context).size.height; //screen height
     double _width = MediaQuery.of(context).size.width; //screen width
 
+    //var _medico = Modular.args.data as Medico; //recebe o agrumento
+    //final Map _user = Modular.get(defaultValue: Loggin.loggin);
+
     final _searchController = TextEditingController();
 
     _tabController(int option) {
+      //var oldPg = controller.page;
       switch (option) {
         case 0:
           controller.setpage(SearchPage());
@@ -40,7 +46,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
     }
 
     _tabController(0); //Fazer o Search aparecer como padrao
-
     return Scaffold(
       body: Container(
         //* ******************************************************************** Backgroud
