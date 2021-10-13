@@ -1,5 +1,0 @@
-2021/10/10-14:44:41.036 9007 Reusing MANIFEST /private/var/folders/wm/jrdxl9gj70b3wmf92269dpth0000gn/T/flutter_tools.rWc9IL/flutter_tools_chrome_device.UFEkNW/Default/Service Worker/Database/MANIFEST-000001
-2021/10/10-14:44:41.037 9007 Recovering log #3
-2021/10/10-14:44:41.037 9007 (ignoring error) /private/var/folders/wm/jrdxl9gj70b3wmf92269dpth0000gn/T/flutter_tools.rWc9IL/flutter_tools_chrome_device.UFEkNW/Default/Service Worker/Database/000003.log: dropping 16934 bytes; Corruption: checksum mismatch
-2021/10/10-14:44:41.037 9007 (ignoring error) /private/var/folders/wm/jrdxl9gj70b3wmf92269dpth0000gn/T/flutter_tools.rWc9IL/flutter_tools_chrome_device.UFEkNW/Default/Service Worker/Database/000003.log: dropping 18 bytes; Corruption: missing start of fragmented record(2)
-2021/10/10-14:44:41.037 9007 Reusing old log /private/var/folders/wm/jrdxl9gj70b3wmf92269dpth0000gn/T/flutter_tools.rWc9IL/flutter_tools_chrome_device.UFEkNW/Default/Service Worker/Database/000003.log 
