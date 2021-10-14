@@ -26,7 +26,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
     //final Map _user = Modular.get(defaultValue: Loggin.loggin);
 
     final _searchController = TextEditingController();
-
+    controller.getPage(0);
     return Scaffold(
       body: Container(
         //* ******************************************************************** Backgroud

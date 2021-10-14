@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ze_gotinha/app/modules/class/Enfermeiro.dart';
 import 'package:ze_gotinha/app/modules/class/fake_bd.dart';
 import 'package:ze_gotinha/app/modules/class/loggin.dart';
@@ -31,8 +32,8 @@ abstract class LoginStoreBase with Store {
   }
 
   @action
-  bool login() {//faz o login
-    if (loginMedico()) {
+  Future<bool> login() async {//faz o login
+    if (await loginMedico()) {
       return true;
     }
     //TODO: fazer login do paciente e enfermeira
@@ -40,11 +41,13 @@ abstract class LoginStoreBase with Store {
   }
 
 
-  bool loginMedico() { //tenta fazer login do medico //TODO:fazer do enfermeiro e usuario tambem
+  Future<bool> loginMedico() async { //tenta fazer login do medico //TODO:fazer do enfermeiro e usuario tambem
     final _bd = Modular.get<BD>(defaultValue: BD());
     medico = _bd.searchMedico(int.parse(username));
 
     if (medico != null) {
+      //SharedPreferences prefs = await SharedPreferences.getInstance();
+      //await prefs.setString("user", "${medico!.crm}");
       Modular.get(defaultValue: Loggin.setLoggin(medico: medico));
       return true;
     }

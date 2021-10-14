@@ -118,7 +118,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                       margin: const EdgeInsets.only(top: 20),
                       width: 120,
                       height: 50,
-                      child: elevatedButton(context, "Entrar", () {
+                      child: elevatedButton(context, "Entrar", () async {
                         controller.setUserPassword(_username.text.toString(),
                             _password.text.toString());
                         //controller.login();
@@ -127,7 +127,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         //     ? Modular.to.pushNamed("/home-medico/")
                         //     : () {};
 
-                        if (controller.login()) {
+                        if (await controller.login()) {
                           Modular.to.pushNamed("/home/${getUser()["type"]}/");
                         }
                       })),
