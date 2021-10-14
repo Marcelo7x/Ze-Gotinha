@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';
 
 class HomeStore = HomeStoreBase with _$HomeStore;
 
-abstract class HomeStoreBase with Store {
-  //@observable
-  //String page = "";
+abstract class HomeStoreBase with Store implements Disposable {
+  final pageViewController = PageController();
 
-  @observable
-  Widget page = Card();
+  @override
+  void dispose() {
+    pageViewController.dispose();
+  }
 
   @action
-  setpage(Widget pg) { //seta a paginha que fica dentro do quando branco na HOME
-    page = pg;
+  getPage(int index) {
+    if (index == 0) {
+      return Modular.to.pushNamed("/home/medico/search/");
+    } else if (index == 1) {
+      return Modular.to.pushNamed("/home/medico/vacina/");
+    } else if (index == 2) {
+      return Modular.to.pushNamed("/home/medico/consulta/");
+    }
   }
 }

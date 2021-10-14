@@ -27,25 +27,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
 
     final _searchController = TextEditingController();
 
-    _tabController(int option) {
-      //var oldPg = controller.page;
-      switch (option) {
-        case 0:
-          controller.setpage(SearchPage());
-          break;
-        case 1:
-          controller.setpage(VacinaPage());
-          break;
-        case 2:
-          controller.setpage(ConsultaPage());
-          break;
-        case 3:
-          controller.setpage(Container());
-          break;
-      }
-    }
-
-    _tabController(0); //Fazer o Search aparecer como padrao
     return Scaffold(
       body: Container(
         //* ******************************************************************** Backgroud
@@ -89,7 +70,10 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                     text: "Úsuario",
                   ),
                 ],
-                onTap: (int op) => _tabController(op),
+                onTap: (int index) {
+                  controller.pageViewController.jumpToPage(index);
+                  controller.getPage(index);
+                },
               ),
             ),
           ),
@@ -104,7 +88,10 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.white,
                 ),
-                child: controller.page);
+                child: PageView(
+                  controller: controller.pageViewController,
+                  children: [RouterOutlet()],
+                ));
           })
         ]),
       ),

@@ -169,9 +169,9 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                           ),
                         );
                       } else {
-                        var home =
-                            Modular.get<HomeStore>(defaultValue: HomeStore());//Pega a instancia de HomeStore que esta injetada com singleton
-                        home.setpage(ConsultaPage());//Altero a pagina que esta no quadro braco, normalmente usaria um
+                        //var home =
+                          //  Modular.get<HomeStore>(defaultValue: HomeStore());//Pega a instancia de HomeStore que esta injetada com singleton
+                        //home.setpage(ConsultaPage());//Altero a pagina que esta no quadro braco, normalmente usaria um
                                                       //"Modular.to.pushNamed("/consulta")", mas desse jeito carregariamos uma nova pagina, sobrescrevendo
                                                       //nossa Home.
                       }
