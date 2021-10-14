@@ -33,24 +33,28 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    SizedBox(//********************************************************** Histórico
                         height: 40,
-                        child: elevatedButton(context, "Histórico", () {})),
+                        child: elevatedButton(context, "Histórico", () {
+                          Modular.to.pushNamed("/home/medico/consulta/historico/");
+                        })),
                     Padding(
                       padding: const EdgeInsets.only(left: 50),
                       child: SizedBox(
                           height: 40,
-                          child: elevatedButton(
-                              context, "Catão de Vacina", () {})),
+                          child: elevatedButton(//********************************************************** Cartao de Vacina
+                              context, "Catão de Vacina", () {
+                                Modular.to.pushNamed("/home/medico/vacina/");
+                              })),
                     ),
                   ],
                 ),
               ),
               Container(
-                child: Row(
+                  child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
+                  Column(//********************************************************** Sistomas
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text("Sintomas", style: TextStyle(fontSize: 20)),
@@ -70,13 +74,13 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                           maxLines: 20,
                           style: TextStyle(fontSize: 16),
                           decoration: const InputDecoration(
-                              border: InputBorder.none,
+                            border: InputBorder.none,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  Padding(
+                  Padding(//********************************************************** Selecionar arquivo
                     padding: const EdgeInsets.only(left: 20),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -110,7 +114,7 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                                     style: TextStyle(fontSize: 20)),
                               ),
                               Container(
-                                  //********************************************************* Search Button */
+                                  //********************************************************* Selecionar arquivo */
                                   //margin: const EdgeInsets.only(top: 20),
                                   width: _width * .05,
                                   height: 40,
@@ -126,19 +130,22 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                   )
                 ],
               )),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
+                      //*****************************************Gerar Receita */
                       height: 40,
-                      child: elevatedButton(context, "Gerar receita", () {})),
+                      child: elevatedButton(context, "Gerar receita", () {
+                        Modular.to.pushNamed("/home/medico/consulta/receita/");
+                      })),
                   Padding(
                     padding: const EdgeInsets.only(left: 50),
-                    child: SizedBox(
+                    child: SizedBox(//***************************************** Cancelar
                         height: 40,
-                        child: elevatedButton(
-                            context, "Cancelar", () {})),
+                        child: elevatedButton(context, "Cancelar", () {
+                          Modular.to.pushNamed("/home/medico/");
+                        })),
                   ),
                 ],
               ),
