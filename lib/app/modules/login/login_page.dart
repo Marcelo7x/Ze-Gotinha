@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ze_gotinha/app/modules/class/loggin.dart';
 import 'package:ze_gotinha/app/modules/login/login_store.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
@@ -22,8 +23,10 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
     final _username = TextEditingController();
     final _password = TextEditingController();
 
-    getUser() {
-      final user = Modular.get(defaultValue: Loggin.loggin);
+    getUser() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final user = prefs.getString("type");
+      //final user = Modular.get(defaultValue: Loggin.loggin);
       return user;
     }
 
@@ -128,7 +131,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         //     : () {};
 
                         if (await controller.login()) {
-                          Modular.to.pushNamed("/home/${getUser()["type"]}/");
+                          Modular.to.pushNamed("/home/${await getUser()}/");
                         }
                       })),
                   Padding(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ze_gotinha/app/modules/class/loggin.dart';
 import 'package:ze_gotinha/app/modules/consulta/consulta_page.dart';
 import 'package:ze_gotinha/app/modules/home/home_module.dart';
@@ -24,7 +25,11 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
 
     final _searchController = TextEditingController();
 
-    final Map _user = Modular.get(defaultValue: Loggin.loggin);
+    getUser() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final user = await prefs.getString("user");
+      return user!;
+    }
 
     var _pacientes = controller.getPacientes();
     _getDataRows() {
@@ -124,13 +129,14 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
               children: [
                 SizedBox(
                     height: 35,
-                    child: elevatedButton(context, "Solicitar Vinculo", () {
-                      var v =
-                          controller.getViculacion(int.parse(_user["user"]));//verifica se ja esta vinculado
+                    child: elevatedButton(context, "Solicitar Vinculo", () async {
+                      var v = controller.getViculacion(int.parse(
+                          await getUser())); //verifica se ja esta vinculado
 
-                      if (!v && controller.cpf != "") {//faz vinculo
+                      if (!v && controller.cpf != "") {
+                        //faz vinculo
                         controller
-                            .setmedicoVinculacion(int.parse(_user["user"]));
+                            .setmedicoVinculacion(int.parse(await getUser()));
                       }
 
                       showDialog(
@@ -152,15 +158,18 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                     })),
                 SizedBox(
                     height: 35,
-                    child: elevatedButton(context, "Fazer Consulta", () {
-                      final v =
-                          controller.getViculacion(int.parse(_user["user"]));//verifica se esta vinculado
+                    child: elevatedButton(context, "Fazer Consulta", () async {
+                      final v = controller.getViculacion(int.parse(
+                          await getUser())); //verifica se esta vinculado
                       if (!v) {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
-                            title: controller.cpf == ""? Text("Selecione um Paciente para fazer a consulta e tente novamente.") : Text(
-                                "Você não está vinculado a este paciente. \nSolicite o vinculo antes de prosseguir para a consulta."),
+                            title: controller.cpf == ""
+                                ? Text(
+                                    "Selecione um Paciente para fazer a consulta e tente novamente.")
+                                : Text(
+                                    "Você não está vinculado a este paciente. \nSolicite o vinculo antes de prosseguir para a consulta."),
                             actions: [
                               elevatedButton(context, "OK", () {
                                 Navigator.pop(context);
@@ -169,7 +178,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                           ),
                         );
                       } else {
-                        Modular.to.pushNamed("/home/medico/consulta");                     
+                        Modular.to.pushNamed("/home/medico/consulta");
                       }
                     })),
               ],

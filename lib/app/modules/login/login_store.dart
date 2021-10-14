@@ -24,7 +24,8 @@ abstract class LoginStoreBase with Store {
   Medico? medico;
 
   @action
-  setUserPassword(String u, String p) {//tratamento do da username e senha da tela de login
+  setUserPassword(String u, String p) {
+    //tratamento do da username e senha da tela de login
     print(u);
     print(p);
     username = u;
@@ -32,7 +33,8 @@ abstract class LoginStoreBase with Store {
   }
 
   @action
-  Future<bool> login() async {//faz o login
+  Future<bool> login() async {
+    //faz o login
     if (await loginMedico()) {
       return true;
     }
@@ -40,14 +42,16 @@ abstract class LoginStoreBase with Store {
     return !logginError;
   }
 
-
-  Future<bool> loginMedico() async { //tenta fazer login do medico //TODO:fazer do enfermeiro e usuario tambem
+  Future<bool> loginMedico() async {
+    //tenta fazer login do medico //TODO:fazer do enfermeiro e usuario tambem
     final _bd = Modular.get<BD>(defaultValue: BD());
     medico = _bd.searchMedico(int.parse(username));
 
     if (medico != null) {
-      //SharedPreferences prefs = await SharedPreferences.getInstance();
-      //await prefs.setString("user", "${medico!.crm}");
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('user', "${medico!.crm}");
+      prefs.setString('type', "medico");
+
       Modular.get(defaultValue: Loggin.setLoggin(medico: medico));
       return true;
     }

@@ -27,6 +27,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
 
     final _searchController = TextEditingController();
     controller.getPage(0);
+    
     return Scaffold(
       body: Container(
         //* ******************************************************************** Backgroud
