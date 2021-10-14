@@ -25,11 +25,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
 
     final _searchController = TextEditingController();
 
-    getUser() async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      final user = await prefs.getString("user");
-      return user!;
-    }
+      controller.getUser();
 
     var _pacientes = controller.getPacientes();
     _getDataRows() {
@@ -129,14 +125,16 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
               children: [
                 SizedBox(
                     height: 35,
-                    child: elevatedButton(context, "Solicitar Vinculo", () async {
+                    child:
+                        elevatedButton(context, "Solicitar Vinculo", () async {
                       var v = controller.getViculacion(int.parse(
-                          await getUser())); //verifica se ja esta vinculado
+                          controller
+                              .user!)); //verifica se ja esta vinculado
 
                       if (!v && controller.cpf != "") {
                         //faz vinculo
-                        controller
-                            .setmedicoVinculacion(int.parse(await getUser()));
+                        controller.setmedicoVinculacion(
+                            int.parse(controller.user!));
                       }
 
                       showDialog(
@@ -160,15 +158,15 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                     height: 35,
                     child: elevatedButton(context, "Fazer Consulta", () async {
                       final v = controller.getViculacion(int.parse(
-                          await getUser())); //verifica se esta vinculado
+                          controller.user!)); //verifica se esta vinculado
                       if (!v) {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
                             title: controller.cpf == ""
-                                ? Text(
+                                ? const Text(
                                     "Selecione um Paciente para fazer a consulta e tente novamente.")
-                                : Text(
+                                : const Text(
                                     "Você não está vinculado a este paciente. \nSolicite o vinculo antes de prosseguir para a consulta."),
                             actions: [
                               elevatedButton(context, "OK", () {

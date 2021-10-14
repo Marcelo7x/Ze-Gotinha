@@ -1,15 +1,22 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ze_gotinha/app/modules/class/fake_bd.dart';
-import 'package:ze_gotinha/app/modules/class/medico.dart';
-import 'package:ze_gotinha/app/modules/class/usuario.dart';
-import 'package:ze_gotinha/app/modules/home/home_module.dart';
 
 part 'search_store.g.dart';
 
 class SearchStore = SearchStoreBase with _$SearchStore;
 
 abstract class SearchStoreBase with Store {
+  String? user;
+  
+  @action
+  getUser() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final user = await prefs.getString("user");
+      this.user = user;
+    }
+  
   @observable
   String cpf = "";//paciente selecionado
 

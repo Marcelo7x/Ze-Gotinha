@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:ze_gotinha/app/modules/class/loggin.dart';
-import 'package:ze_gotinha/app/modules/class/medico.dart';
-import 'package:ze_gotinha/app/modules/consulta/consulta_page.dart';
 import 'package:ze_gotinha/app/modules/home/home_store.dart';
-import 'package:ze_gotinha/app/modules/search/search_page.dart';
-import 'package:ze_gotinha/app/modules/vacina/vacina_page.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -22,10 +17,6 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
     double _height = MediaQuery.of(context).size.height; //screen height
     double _width = MediaQuery.of(context).size.width; //screen width
 
-    //var _medico = Modular.args.data as Medico; //recebe o agrumento
-    //final Map _user = Modular.get(defaultValue: Loggin.loggin);
-
-    final _searchController = TextEditingController();
     controller.getPage(0);
     
     return Scaffold(
@@ -78,22 +69,20 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               ),
             ),
           ),
-          Observer(builder: (_) {
-            return Container(
-                //**************************************************************** White box
-                height: _height * .75,
-                width: _width * .6,
-                margin: const EdgeInsets.only(top: 40),
-                //color: ThemeData.light().cardColor,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: PageView(
-                  controller: controller.pageViewController,
-                  children: [RouterOutlet()],
-                ));
-          })
+          Container(
+            //**************************************************************** White box
+            height: _height * .75,
+            width: _width * .6,
+            margin: const EdgeInsets.only(top: 40),
+            //color: ThemeData.light().cardColor,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.white,
+            ),
+            child: PageView(
+              controller: controller.pageViewController,
+              children: [RouterOutlet()],
+            ))
         ]),
       ),
     );
