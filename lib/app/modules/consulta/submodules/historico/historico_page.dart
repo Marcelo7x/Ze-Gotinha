@@ -81,6 +81,7 @@ class _HistoricoPageState extends ModularState<HistoricoPage, HistoricoStore> {
     }
 
     _dataRows.removeAt(0);
+    if (dataRow == _dataRows) return;
     dataRow = _dataRows;
 
     setState(() {
@@ -92,6 +93,12 @@ class _HistoricoPageState extends ModularState<HistoricoPage, HistoricoStore> {
   void initState() {
     super.initState();
     _getDataRows();
+  }
+
+  @override
+  void dispose() {
+    dataRow!.clear();
+    super.dispose();
   }
 
   Widget build(BuildContext context) {

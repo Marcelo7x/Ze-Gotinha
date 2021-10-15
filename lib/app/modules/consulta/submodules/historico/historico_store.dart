@@ -9,10 +9,8 @@ class HistoricoStore = HistoricoStoreBase with _$HistoricoStore;
 
 abstract class HistoricoStoreBase with Store {
   Future<List<Map<String, String>>?> getHistory() async {
-    print("totldkjlksdjfl;ksdjflksdjf ");
-    //gera lista de pacientes
     final _bd = Modular.get<BD>(defaultValue: BD());
-    _bd.addHistory();
+    _bd.addHistory();//*******************************lembrar que introduz linhas duplicadas //! eh para teste apenas */
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String cpf = prefs.getString("paciente")!;
