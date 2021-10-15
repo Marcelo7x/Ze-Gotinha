@@ -119,20 +119,22 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Gerar receita", style: TextStyle(fontSize: 20)),
+              Text("Gerar receita", style: TextStyle(fontSize: 20)),//*****************************titulo  */
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Observer(builder: (_) {
-                    return Container(
+                    return Container( //********************************Lista de  Medicamentos ja adicionados*/
                         margin: const EdgeInsets.only(top: 20),
-                        height: controller.listHeight,
+                        height: (controller.listHeight ?? 0) > _height * .4? _height * .4 : controller.listHeight ,
                         width: _width * .55,
                         child: Observer(builder: (_) {
-                          return Column(
-                              children: controller.medicamentos == null
-                                  ? [Container()]
-                                  : _listMedicamentos());
+                          return SingleChildScrollView(
+                            child: Column(
+                                children: controller.medicamentos == null
+                                    ? [Container()]
+                                    : _listMedicamentos()),
+                          );
                         }));
                   }),
                 ],
@@ -144,7 +146,7 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
+                      Row(  //*********************************************************Adicionar medicamentos */
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
@@ -257,7 +259,7 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
               ),
             ],
           ),
-          Padding(
+          Padding(  //*********************************************************Finalizar cancelar */
             padding:
                 const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
             child: Row(
