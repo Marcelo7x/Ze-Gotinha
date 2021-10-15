@@ -14,6 +14,7 @@ class Usuario {
 
   List<Medico>? _medicos = [];
   List<Enfermeiro>? _enfermeiros = [];
+  List<Map<String, String>>? _history;
 
   set name(String name) {
     _name = name;
@@ -100,6 +101,15 @@ class Usuario {
     }
   }
 
+  void addHistory(String data, String sintomas, String medicamentos) {
+    _history == null
+        ? _history = [
+            {"data": data, "sintomas": sintomas, "medicamentos": medicamentos}
+          ]
+        : _history!.add(
+            {"data": data, "sintomas": sintomas, "medicamentos": medicamentos});
+  }
+
   String get name => _name;
   String get cpf => _cpf;
   String get senha => _senha;
@@ -128,6 +138,8 @@ class Usuario {
     }
     return false;
   }
+
+  get history => _history;
 
   Usuario(String name, String cpf) {
     this.name = name;

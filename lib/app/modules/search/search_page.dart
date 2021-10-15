@@ -25,7 +25,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
 
     final _searchController = TextEditingController();
 
-      controller.getUser();
+    controller.getUser();
 
     var _pacientes = controller.getPacientes();
     _getDataRows() {
@@ -39,9 +39,14 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
       for (var i = 0; i < _pacientes.length; i++) {
         _dataRows.add(DataRow(
             selected: _pacientes[i]["cpf"] == controller.cpf,
-            onSelectChanged: (s) {
+            onSelectChanged: (s) async {
               controller.setCpf(_pacientes[i]["cpf"]);
               //_getDataRows();
+               //bool v = await controller.getViculacion(_pacientes[i]["cpf"]);
+              
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.setString("paciente", _pacientes[i]["cpf"]);
+              
             },
             cells: <DataCell>[
               DataCell(Text(_pacientes[i]["name"]!)),
@@ -128,13 +133,12 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                     child:
                         elevatedButton(context, "Solicitar Vinculo", () async {
                       var v = controller.getViculacion(int.parse(
-                          controller
-                              .user!)); //verifica se ja esta vinculado
+                          controller.user!)); //verifica se ja esta vinculado
 
                       if (!v && controller.cpf != "") {
                         //faz vinculo
-                        controller.setmedicoVinculacion(
-                            int.parse(controller.user!));
+                        controller
+                            .setmedicoVinculacion(int.parse(controller.user!));
                       }
 
                       showDialog(

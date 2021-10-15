@@ -3,7 +3,8 @@ import 'package:ze_gotinha/app/modules/class/Enfermeiro.dart';
 import 'package:ze_gotinha/app/modules/class/medico.dart';
 import 'package:ze_gotinha/app/modules/class/usuario.dart';
 
-class BD { //* Simula o banco de dados do projeto para fins de teste
+class BD {
+  //* Simula o banco de dados do projeto para fins de teste
   final List<Usuario> _users = [
     Usuario("Carlos", "12345678901"),
     Usuario("Larissa", "09876543210"),
@@ -58,5 +59,14 @@ class BD { //* Simula o banco de dados do projeto para fins de teste
       }
     }
     return null;
+  }
+
+  List<Map<String, String>>? getHistory(String cpf) {
+    return searchUsers(s: cpf)?.first.history;
+  }
+
+  addHistory() {
+    _users.first
+        .addHistory("101010", "tosse molhada", "Toma sol de boca aberta");
   }
 }
