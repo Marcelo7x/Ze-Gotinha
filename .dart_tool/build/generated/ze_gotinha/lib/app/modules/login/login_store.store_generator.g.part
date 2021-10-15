@@ -50,6 +50,13 @@ mixin _$LoginStore on LoginStoreBase, Store {
     });
   }
 
+  final _$loginAsyncAction = AsyncAction('LoginStoreBase.login');
+
+  @override
+  Future<bool> login() {
+    return _$loginAsyncAction.run(() => super.login());
+  }
+
   final _$LoginStoreBaseActionController =
       ActionController(name: 'LoginStoreBase');
 
@@ -59,17 +66,6 @@ mixin _$LoginStore on LoginStoreBase, Store {
         name: 'LoginStoreBase.setUserPassword');
     try {
       return super.setUserPassword(u, p);
-    } finally {
-      _$LoginStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  bool login() {
-    final _$actionInfo = _$LoginStoreBaseActionController.startAction(
-        name: 'LoginStoreBase.login');
-    try {
-      return super.login();
     } finally {
       _$LoginStoreBaseActionController.endAction(_$actionInfo);
     }

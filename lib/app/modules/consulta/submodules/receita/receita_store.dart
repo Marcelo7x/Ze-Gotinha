@@ -8,6 +8,9 @@ abstract class ReceitaStoreBase with Store {
   @observable
   List<Map<String, String>>? medicamentos;
 
+  @observable
+  double? listHeight;
+
   @action
   setMedicamentos(String remedio, String quantidade, String observacao) {
     if (medicamentos == null) {
@@ -23,5 +26,15 @@ abstract class ReceitaStoreBase with Store {
     }
 
     print(medicamentos!.length);
+  }
+
+  @action
+  getlistHeight() {
+    if (medicamentos == null) {
+      listHeight = 30;
+    } else {
+      listHeight = 20 + medicamentos!.length * 60;
+      print("list height ${listHeight}");
+    }
   }
 }

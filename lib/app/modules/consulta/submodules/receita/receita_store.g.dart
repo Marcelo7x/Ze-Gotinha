@@ -24,6 +24,21 @@ mixin _$ReceitaStore on ReceitaStoreBase, Store {
     });
   }
 
+  final _$listHeightAtom = Atom(name: 'ReceitaStoreBase.listHeight');
+
+  @override
+  double? get listHeight {
+    _$listHeightAtom.reportRead();
+    return super.listHeight;
+  }
+
+  @override
+  set listHeight(double? value) {
+    _$listHeightAtom.reportWrite(value, super.listHeight, () {
+      super.listHeight = value;
+    });
+  }
+
   final _$ReceitaStoreBaseActionController =
       ActionController(name: 'ReceitaStoreBase');
 
@@ -40,9 +55,21 @@ mixin _$ReceitaStore on ReceitaStoreBase, Store {
   }
 
   @override
+  dynamic getlistHeight() {
+    final _$actionInfo = _$ReceitaStoreBaseActionController.startAction(
+        name: 'ReceitaStoreBase.getlistHeight');
+    try {
+      return super.getlistHeight();
+    } finally {
+      _$ReceitaStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-medicamentos: ${medicamentos}
+medicamentos: ${medicamentos},
+listHeight: ${listHeight}
     ''';
   }
 }
