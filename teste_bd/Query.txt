@@ -1,0 +1,20 @@
+** Histórico de consultas de um paciente
+SELECT historico.nome, consulta.*
+FROM historico
+INNER JOIN consulta
+ ON historico.cpf = consulta.cpf
+WHERE historico.nome = 'Clara Rayssa Olivia Ribeiro'
+
+** Cartão de vacina de um paciente
+SELECT cartao_vacina.nome, dose.*
+FROM cartao_vacina
+INNER JOIN dose
+ ON cartao_vacina.cpf = dose.cpf
+WHERE cartao_vacina.nome = 'Clara Rayssa Olivia Ribeiro'
+
+** Pacientes vinculados ao médico pelo CRM
+SELECT usuario.nome, usuario.cpf
+FROM vinculo
+INNER JOIN usuario
+ ON vinculo.cpf = usuario.cpf
+WHERE vinculo.crm = '56782-ES'
