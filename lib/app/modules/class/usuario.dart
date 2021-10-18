@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ze_gotinha/app/modules/class/Enfermeiro.dart';
 import 'package:ze_gotinha/app/modules/class/fake_bd.dart';
 import 'package:ze_gotinha/app/modules/class/medico.dart';
+import 'package:ze_gotinha/app/modules/class/vacina.dart';
 
 class Usuario {
   String _name = "";
@@ -15,6 +16,7 @@ class Usuario {
   List<Medico>? _medicos = [];
   List<Enfermeiro>? _enfermeiros = [];
   List<Map<String, String>>? _history;
+  List<Map<Vacina, Map<String, String>>>? _cartaoVacina = [Map()];
 
   set name(String name) {
     _name = name;
@@ -110,6 +112,13 @@ class Usuario {
             {"data": data, "sintomas": sintomas, "medicamentos": medicamentos});
   }
 
+  void addVacina(Vacina vacina, String dose, String data, String lote) {
+    if (vacina == null || lote == null || data == null || dose == null) {
+      return;
+    }
+    _cartaoVacina!.add({vacina: {"dose": dose, "lote": lote, "data": data}});
+  }
+
   String get name => _name;
   String get cpf => _cpf;
   String get senha => _senha;
@@ -146,4 +155,6 @@ class Usuario {
     this.cpf = cpf;
     //print(this.name);
   }
+
+  get cartaoVacina => _cartaoVacina;
 }

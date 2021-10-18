@@ -42,11 +42,10 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
             onSelectChanged: (s) async {
               controller.setCpf(_pacientes[i]["cpf"]);
               //_getDataRows();
-               //bool v = await controller.getViculacion(_pacientes[i]["cpf"]);
-              
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                prefs.setString("paciente", _pacientes[i]["cpf"]);
-              
+              //bool v = await controller.getViculacion(_pacientes[i]["cpf"]);
+
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setString("paciente", _pacientes[i]["cpf"]);
             },
             cells: <DataCell>[
               DataCell(Text(_pacientes[i]["name"]!)),
@@ -159,30 +158,57 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                       );
                     })),
                 SizedBox(
-                    height: 35,
-                    child: elevatedButton(context, "Fazer Consulta", () async {
-                      final v = controller.getViculacion(int.parse(
-                          controller.user!)); //verifica se esta vinculado
-                      if (!v) {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) => AlertDialog(
-                            title: controller.cpf == ""
-                                ? const Text(
-                                    "Selecione um Paciente para fazer a consulta e tente novamente.")
-                                : const Text(
-                                    "Você não está vinculado a este paciente. \nSolicite o vinculo antes de prosseguir para a consulta."),
-                            actions: [
-                              elevatedButton(context, "OK", () {
-                                Navigator.pop(context);
-                              }),
-                            ],
-                          ),
-                        );
-                      } else {
-                        Modular.to.pushNamed("/home/medico/consulta");
-                      }
-                    })),
+                  height: 35,
+                  child: elevatedButton(context, "Fazer Consulta", () async {
+                    final v = controller.getViculacion(int.parse(
+                        controller.user!)); //verifica se esta vinculado
+                    if (!v) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: controller.cpf == ""
+                              ? const Text(
+                                  "Selecione um Paciente para fazer a consulta e tente novamente.")
+                              : const Text(
+                                  "Você não está vinculado a este paciente. \nSolicite o vinculo antes de prosseguir para a consulta."),
+                          actions: [
+                            elevatedButton(context, "OK", () {
+                              Navigator.pop(context);
+                            }),
+                          ],
+                        ),
+                      );
+                    } else {
+                      Modular.to.pushNamed("/home/medico/consulta");
+                    }
+                  }),
+                ),
+                SizedBox(
+                  height: 35,
+                  child: elevatedButton(context, "Vacinar", () async {
+                    final v = controller.getViculacion(int.parse(
+                        controller.user!)); //verifica se esta vinculado
+                    if (!v) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: controller.cpf == ""
+                              ? const Text(
+                                  "Selecione um Paciente para vacinar e tente novamente.")
+                              : const Text(
+                                  "Você não está vinculado a este paciente. \nSolicite o vinculo antes de prosseguir para a vacina."),
+                          actions: [
+                            elevatedButton(context, "OK", () {
+                              Navigator.pop(context);
+                            }),
+                          ],
+                        ),
+                      );
+                    } else {
+                      Modular.to.pushNamed("/home/medico/vacina");
+                    }
+                  }),
+                ),
               ],
             ),
           ),

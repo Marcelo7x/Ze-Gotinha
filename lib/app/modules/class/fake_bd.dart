@@ -2,6 +2,7 @@
 import 'package:ze_gotinha/app/modules/class/Enfermeiro.dart';
 import 'package:ze_gotinha/app/modules/class/medico.dart';
 import 'package:ze_gotinha/app/modules/class/usuario.dart';
+import 'package:ze_gotinha/app/modules/class/vacina.dart';
 
 class BD {
   //* Simula o banco de dados do projeto para fins de teste
@@ -69,4 +70,12 @@ class BD {
     _users.first
         .addHistory("101010", "tosse molhada", "Toma sol de boca aberta");
   }
+
+  List<Vacina> _vacinas = [
+    Vacina("PFizer"),
+    Vacina("Jacarezinho"),
+    Vacina("Na bundinha"),
+  ];
+
+  get vacina => _vacinas;
 }
