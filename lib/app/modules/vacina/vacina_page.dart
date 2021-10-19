@@ -119,6 +119,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                 ),
                 actions: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       elevatedButton(context, "Cancelar", () {
                         Navigator.pop(context);

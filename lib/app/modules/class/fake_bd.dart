@@ -78,4 +78,12 @@ class BD {
   ];
 
   get vacina => _vacinas;
+
+  addVacina() {
+    _users.first
+        .addVacina(_vacinas.first, "1", "121212", "1244");
+  }
+  getCartaoVacinas(String cpf) {
+    return searchUsers(s: cpf)?.first.cartaoVacina;
+  }
 }

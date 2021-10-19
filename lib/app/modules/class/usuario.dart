@@ -16,7 +16,7 @@ class Usuario {
   List<Medico>? _medicos = [];
   List<Enfermeiro>? _enfermeiros = [];
   List<Map<String, String>>? _history;
-  List<Map<Vacina, Map<String, String>>>? _cartaoVacina = [Map()];
+  List<Map<String, String>>? _cartaoVacina;
 
   set name(String name) {
     _name = name;
@@ -116,7 +116,12 @@ class Usuario {
     if (vacina == null || lote == null || data == null || dose == null) {
       return;
     }
-    _cartaoVacina!.add({vacina: {"dose": dose, "lote": lote, "data": data}});
+    _cartaoVacina != null
+        ? _cartaoVacina!.add(
+            {"vacina": vacina.nome, "dose": dose, "lote": lote, "data": data})
+        : _cartaoVacina = [
+            {"vacina": vacina.nome, "dose": dose, "lote": lote, "data": data}
+          ];
   }
 
   String get name => _name;
