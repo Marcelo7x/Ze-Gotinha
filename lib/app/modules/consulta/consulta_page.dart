@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:ze_gotinha/app/modules/class/loggin.dart';
 import 'package:ze_gotinha/app/modules/consulta/consulta_store.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
 

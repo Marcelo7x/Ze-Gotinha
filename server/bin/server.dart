@@ -10,28 +10,41 @@ import 'package:test/test.dart';
 // Configure routes.
 final _router = Router()
   ..get('/', _rootHandler)
-  ..get('/echo/', _echoHandler);
+  ..get('/get-medico/<crm>/', _user);
 
 Response _rootHandler(Request req) {
   return Response.ok('Hello, World!\n');
 }
 
 dynamic myEncode(dynamic item) {
-  if(item is DateTime) {
+  if (item is DateTime) {
     return item.toIso8601String();
   }
   return item;
 }
 
-FutureOr<Response> _echoHandler(Request request) async {
-  var b = await teste();
+FutureOr<Response> _user(Request request, String crm) async {
+  final m = '+';
+  final s = ' ';
+  crm.replaceAll(m,s);
+  print(crm);
+  List<Map<String, Map<String, dynamic>>> result = await BD.bd!
+      .mappedResultsQuery("select * from medico where crm = '$crm';");
 
-  return Response.ok(json.encode(b, toEncodable: myEncode));
+  return Response.ok(
+    json.encode(result, toEncodable: myEncode),
+    headers: {
+     "Access-Control-Allow-Origin": "*", 
+     "Access-Control-Allow-Credentials": "true", 
+     "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+     "Access-Control-Allow-Methods": "POST, OPTIONS"
+   }
+  );
 }
 
-
 FutureOr<List<Map<String, Map<String, dynamic>>>> teste() async {
-  List<Map<String, Map<String, dynamic>>> result = await BD.bd!.mappedResultsQuery("select * from usuario");
+  List<Map<String, Map<String, dynamic>>> result =
+      await BD.bd!.mappedResultsQuery("select * from usuario");
   return result;
 }
 

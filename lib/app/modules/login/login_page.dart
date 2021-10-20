@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ze_gotinha/app/modules/class/loggin.dart';
 import 'package:ze_gotinha/app/modules/login/login_store.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
 
@@ -124,11 +123,6 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                       child: elevatedButton(context, "Entrar", () async {
                         controller.setUserPassword(_username.text.toString(),
                             _password.text.toString());
-                        //controller.login();
-
-                        // controller.logginError == false
-                        //     ? Modular.to.pushNamed("/home-medico/")
-                        //     : () {};
 
                         if (await controller.login()) {
                           Modular.to.pushNamed("/home/${await getUser()}/");

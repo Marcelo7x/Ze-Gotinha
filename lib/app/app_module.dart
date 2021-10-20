@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ze_gotinha/app/modules/class/fake_bd.dart';
-import 'package:ze_gotinha/app/modules/class/loggin.dart';
 import 'package:ze_gotinha/app/modules/consulta/submodules/receita/receita_module.dart';
 import 'package:ze_gotinha/app/modules/login/login_module.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
@@ -21,7 +20,6 @@ class AppModule extends Module {
     Bind.lazySingleton((i) => VacinaStore()),
     Bind.lazySingleton((i) => ConsultaStore()),
     Bind.lazySingleton((i) => SearchStore()),
-    Bind.singleton((i) => Loggin()),
     Bind.lazySingleton((i) => elevatedButton),
   ];
 
