@@ -22,8 +22,9 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
     final _data = TextEditingController();
     final _lote = TextEditingController();
     final _dose = TextEditingController();
+    final _searchController = TextEditingController();
 
-    var _vacinas = controller.getVacina();
+    var _vacinas = controller.getVacinas();
     _getDataRows() {
       List<DataRow> _dataRows = [
         const DataRow(cells: <DataCell>[
@@ -142,19 +143,68 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
     }
 
     return Container(
-      child: SingleChildScrollView(
-        child: SizedBox(
-          height: _height * .5,
-          width: _width * .45,
-          child: Observer(builder: (_) {
-            return DataTable(columns: const [
-              DataColumn(
-                  label: Text("Nome",
-                      style: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold))),
-            ], rows: _getDataRows());
-          }),
-        ),
+      child: Column(
+        children: [
+          Container(//********************************************************** Search */
+            width: _width * .46,
+            height: 50,
+            margin: const EdgeInsets.only(top: 20),
+            decoration: BoxDecoration(
+                borderRadius: const BorderRadius.horizontal(
+                    left: Radius.circular(16), right: Radius.circular(16)),
+                color: Colors.white,
+                border: Border.all(color: Colors.black)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: _width * .35,
+                  height: 50,
+                  padding: const EdgeInsets.only(left: 10),
+                  child: TextField(
+                      //login
+                      controller: _searchController,
+                      autofocus: true,
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          icon: Icon(Icons.person,
+                              color: Theme.of(context).colorScheme.secondary),
+                          hintText: "Digite o nome da vacina"),
+                      style: TextStyle(fontSize: 20),),
+                ),
+                Container(
+                    //********************************************************* Search Button */
+                    //margin: const EdgeInsets.only(top: 20),
+                    width: _width * .1,
+                    height: 50,
+                    //decoration: BoxDecoration(
+                    //borderRadius: BorderRadius.circular(20)),
+                    child: elevatedButton(context, "Buscar Vacina", () {
+                      _vacinas =
+                          controller.getVacinas(s: _searchController.text);
+                      //controller.setVacina(""); //como isso atualiza a tabela
+                      _getDataRows();
+                    })),
+              ],
+            ),
+          ),
+
+
+          SingleChildScrollView(
+            child: SizedBox(
+              height: _height * .5,
+              width: _width * .45,
+              child: Observer(builder: (_) {
+                return DataTable(columns: const [
+                  DataColumn(
+                      label: Text("Nome",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold))),
+                ], rows: _getDataRows());
+              }),
+            ),
+          ),
+        ],
       ),
     );
   }

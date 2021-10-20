@@ -89,7 +89,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                               icon: Icon(Icons.person,
                                   color:
                                       Theme.of(context).colorScheme.secondary),
-                              hintText: "Úsuario"),
+                              hintText: "Usuário"),
                           style: TextStyle(fontSize: 20)),
                     ),
                   ),
@@ -140,7 +140,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                       child: Observer(builder: (_) {
                         return Text(
                           controller.logginError
-                              ? "Senha ou Úsuario incorreto. Verifique e tente novamente."
+                              ? "Senha ou Usuário incorreto. Verifique e tente novamente."
                               : "",
                           style: TextStyle(
                             fontSize: 16,

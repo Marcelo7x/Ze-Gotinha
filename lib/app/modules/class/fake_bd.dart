@@ -79,6 +79,25 @@ class BD {
 
   get vacina => _vacinas;
 
+  List<Vacina>? searchVacinas({String s = ""}) {
+    if (s == "") {
+      return _vacinas;
+    }
+
+    List<Vacina>? list;
+    for (var element in _vacinas) {
+      if (element.nome.toLowerCase().compareTo(s.toLowerCase()) == 0) {
+        list != null ? list.add(element) : list = [element];
+      }
+    }
+
+    if (list == null) {
+      return _vacinas;
+    }
+
+    return list;
+  }
+
   addVacina() {
     _users.first
         .addVacina(_vacinas.first, "1", "121212", "1244");

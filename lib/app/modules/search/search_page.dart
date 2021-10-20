@@ -86,7 +86,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                           border: InputBorder.none,
                           icon: Icon(Icons.person,
                               color: Theme.of(context).colorScheme.secondary),
-                          hintText: "Digite o nome do Paciente"),
+                          hintText: "Digite o nome do paciente"),
                       style: TextStyle(fontSize: 20)),
                 ),
                 Container(
@@ -130,7 +130,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                 SizedBox(
                     height: 35,
                     child:
-                        elevatedButton(context, "Solicitar Vinculo", () async {
+                        elevatedButton(context, "Solicitar Vínculo", () async {
                       var v = controller.getViculacion(int.parse(
                           controller.user!)); //verifica se ja esta vinculado
 
@@ -144,11 +144,11 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
                           title: v == true
-                              ? Text("Você já está viculado a esste paciente.")
+                              ? Text("Você já está vinculado a esste paciente.")
                               : controller.cpf != ""
-                                  ? Text("Paciente Vinculado com Sucesso")
+                                  ? Text("Paciente vinculado com sucesso")
                                   : Text(
-                                      "Você deve selecionar um paciente antes de solicitar um vinculo."),
+                                      "Você deve selecionar um paciente antes de solicitar um vínculo."),
                           actions: [
                             elevatedButton(context, "OK", () {
                               Navigator.pop(context);
@@ -170,7 +170,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                               ? const Text(
                                   "Selecione um Paciente para fazer a consulta e tente novamente.")
                               : const Text(
-                                  "Você não está vinculado a este paciente. \nSolicite o vinculo antes de prosseguir para a consulta."),
+                                  "Você não está vinculado a este paciente. \nSolicite o vínculo antes de prosseguir para a consulta."),
                           actions: [
                             elevatedButton(context, "OK", () {
                               Navigator.pop(context);

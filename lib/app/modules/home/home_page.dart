@@ -59,7 +59,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                   ),
                   Tab(
                     icon: Icon(Icons.person),
-                    text: "Úsuario",
+                    text: "Usuário",
                   ),
                 ],
                 onTap: (int index) {

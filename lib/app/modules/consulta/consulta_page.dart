@@ -43,7 +43,7 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                       child: SizedBox(
                           height: 40,
                           child: elevatedButton(//********************************************************** Cartao de Vacina
-                              context, "Catão de Vacina", () {
+                              context, "Cartão de Vacina", () {
                                 Modular.to.pushNamed("/home/medico/vacina/");
                               })),
                     ),

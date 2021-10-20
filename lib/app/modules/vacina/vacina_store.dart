@@ -29,18 +29,39 @@ abstract class VacinaStoreBase with Store {
     print(user.first.cartaoVacina);
   }
 
-  getVacina({String s = ""}) {
-    //gera lista de vacinas
+  // getVacina({String s = ""}) {
+  //   //gera lista de vacinas
+  //   final _bd = Modular.get<BD>(defaultValue: BD());
+  //   var _vacina = _bd.vacina;
+
+  //   List<String>? vacinas;
+
+  //   for (var element in _vacina!) {
+  //     //print(element.cpf);
+  //     vacinas != null ? vacinas.add(element.nome) : vacinas = [element.nome];
+  //   }
+
+  //   return vacinas;
+  // }
+
+
+  getVacinas({String s = ""}) {//gera lista de pacientes
     final _bd = Modular.get<BD>(defaultValue: BD());
-    var _vacina = _bd.vacina;
+    var _users = _bd.searchVacinas(s: s);
 
-    List<String>? vacinas;
 
-    for (var element in _vacina!) {
-      //print(element.cpf);
-      vacinas != null ? vacinas.add(element.nome) : vacinas = [element.nome];
+    List<String>? vacina;
+
+    for (var element in _users!) {
+
+      vacina != null
+          ? vacina.add(element.nome)
+          : vacina = [
+              element.nome
+            ];
     }
 
-    return vacinas;
+    return vacina;
   }
+
 }
