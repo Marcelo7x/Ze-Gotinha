@@ -110,6 +110,10 @@ file
 2.12
 file:///usr/local/Caskroom/flutter/2.5.1/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.2/
 file:///usr/local/Caskroom/flutter/2.5.1/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.2/lib/
+file_picker
+2.12
+file:///usr/local/Caskroom/flutter/2.5.1/flutter/.pub-cache/hosted/pub.dartlang.org/file_picker-4.1.5/
+file:///usr/local/Caskroom/flutter/2.5.1/flutter/.pub-cache/hosted/pub.dartlang.org/file_picker-4.1.5/lib/
 fixnum
 2.12
 file:///usr/local/Caskroom/flutter/2.5.1/flutter/.pub-cache/hosted/pub.dartlang.org/fixnum-1.0.0/
@@ -130,6 +134,10 @@ flutter_modular_annotations
 2.12
 file:///usr/local/Caskroom/flutter/2.5.1/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_modular_annotations-0.0.2/
 file:///usr/local/Caskroom/flutter/2.5.1/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_modular_annotations-0.0.2/lib/
+flutter_plugin_android_lifecycle
+2.12
+file:///usr/local/Caskroom/flutter/2.5.1/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.4/
+file:///usr/local/Caskroom/flutter/2.5.1/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.4/lib/
 frontend_server_client
 2.12
 file:///usr/local/Caskroom/flutter/2.5.1/flutter/.pub-cache/hosted/pub.dartlang.org/frontend_server_client-2.1.2/

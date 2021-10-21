@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -117,36 +120,60 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                               Container(
                                 width: _width * .15,
                                 height: 40,
+                                alignment: Alignment.center,
                                 padding: const EdgeInsets.only(left: 10),
                                 child: TextField(
-                                    //login
-                                    controller: _fileInput,
-                                    autofocus: true,
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      icon: Icon(Icons.file_upload,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onSecondary),
-                                    ),
-                                    style: TextStyle(fontSize: 20)),
+                                  //login
+                                  controller: _fileInput,
+                                  autofocus: true,
+                                  maxLines: 2,
+                                  cursorWidth: 0,
+                                  mouseCursor: MouseCursor.uncontrolled,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    icon: Icon(Icons.file_upload,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary),
+                                  ),
+                                  style: TextStyle(fontSize: 10),
+                                  onTap: () async {
+                                    FilePickerResult? result =
+                                        await FilePicker.platform.pickFiles();
+
+                                    if (result != null) {
+                                      File file =
+                                          File(result.files.single.name!);
+                                      _fileInput.text = file.toString();
+                                    } else {
+                                      // User canceled the picker
+                                    }
+                                  },
+                                ),
                               ),
                               Container(
-                                  //********************************************************* Selecionar arquivo */
-                                  //margin: const EdgeInsets.only(top: 20),
-                                  width: _width * .05,
-                                  height: 40,
-                                  //decoration: BoxDecoration(
-                                  //borderRadius: BorderRadius.circular(20)),
-                                  child: elevatedButton(
-                                      context,
-                                      const Text("Selecionar",
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          )),
-                                      () {})),
+                                //********************************************************* Selecionar arquivo */
+                                width: _width * .07,
+                                height: 40,
+                                child: elevatedButton(
+                                    context,
+                                    const Text("Selecionar",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        )), () async {
+                                  FilePickerResult? result =
+                                      await FilePicker.platform.pickFiles();
+
+                                  if (result != null) {
+                                    File file = File(result.files.single.name);
+                                    _fileInput.text = file.toString();
+                                  } else {
+                                    // User canceled the picker
+                                  }
+                                }),
+                              ),
                             ],
                           ),
                         ),
