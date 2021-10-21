@@ -10,7 +10,7 @@ class VacinaStore = VacinaStoreBase with _$VacinaStore;
 
 abstract class VacinaStoreBase with Store {
   @observable
-  String vacina = ""; //paciente selecionado
+  List<String>? vacina = []; //paciente selecionado
 
   @action
   setVacina(String vacina, String dose, String data, String lote) async {
@@ -50,18 +50,18 @@ abstract class VacinaStoreBase with Store {
     var _users = _bd.searchVacinas(s: s);
 
 
-    List<String>? vacina;
+    List<String>? v;
 
     for (var element in _users!) {
 
-      vacina != null
-          ? vacina.add(element.nome)
-          : vacina = [
+      v != null
+          ? v.add(element.nome)
+          : v = [
               element.nome
             ];
     }
 
-    return vacina;
+    vacina = v;
   }
 
 }

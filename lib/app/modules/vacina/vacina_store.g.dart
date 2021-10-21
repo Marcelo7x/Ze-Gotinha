@@ -12,13 +12,13 @@ mixin _$VacinaStore on VacinaStoreBase, Store {
   final _$vacinaAtom = Atom(name: 'VacinaStoreBase.vacina');
 
   @override
-  String get vacina {
+  List<String>? get vacina {
     _$vacinaAtom.reportRead();
     return super.vacina;
   }
 
   @override
-  set vacina(String value) {
+  set vacina(List<String>? value) {
     _$vacinaAtom.reportWrite(value, super.vacina, () {
       super.vacina = value;
     });
