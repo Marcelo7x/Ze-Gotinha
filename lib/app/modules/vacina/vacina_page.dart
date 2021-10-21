@@ -144,7 +144,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
             child: Row(
               children: [
                 GestureDetector(
-                    onTap: () => Modular.to.popAndPushNamed("/home/medico/"),
+                    onTap: () => Modular.to.pushNamed("/home/medico/"),
                     child: Icon(Icons.arrow_back)),
                 Text("voltar"),
               ],

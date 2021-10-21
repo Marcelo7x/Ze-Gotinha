@@ -293,8 +293,9 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                          )),
-                      () {}),
+                          )), () {
+                    Modular.to.pushNamed("/home/medico/consulta/");
+                  }),
                   elevatedButton(
                       context,
                       const Text("Cancelar",
@@ -303,7 +304,7 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           )), () {
-                    Modular.to.pushNamed("/home/medico/search/");
+                    Modular.to.pushNamed("/home/medico/consulta/");
                   })
                 ]),
           )

@@ -39,7 +39,8 @@ class _HistoricoPageState extends ModularState<HistoricoPage, HistoricoStore> {
                   const Text("\nMedicamentos",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Text(list["medicamentos"]!, style: const TextStyle(fontSize: 14)),
+                  Text(list["medicamentos"]!,
+                      style: const TextStyle(fontSize: 14)),
                 ],
               ),
             ),
@@ -115,6 +116,17 @@ class _HistoricoPageState extends ModularState<HistoricoPage, HistoricoStore> {
     return Container(
         child: Column(
       children: [
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            children: [
+              GestureDetector(
+                  onTap: () => Modular.to.pushNamed("/home/medico/consulta/"),
+                  child: Icon(Icons.arrow_back)),
+              Text("voltar"),
+            ],
+          ),
+        ),
         SingleChildScrollView(
             child: SizedBox(
                 height: _height * .5,
