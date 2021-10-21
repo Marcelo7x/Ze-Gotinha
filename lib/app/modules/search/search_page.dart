@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ze_gotinha/app/modules/home/home_module.dart';
+import 'package:ze_gotinha/app/modules/home/home_store.dart';
 import 'package:ze_gotinha/app/modules/search/search_store.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
 
@@ -81,6 +83,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
               child: Observer(
                 builder: (_) {
                   return DataTable(
+                    showCheckboxColumn: false,
                     columns: const [
                       DataColumn(
                           label: Text("Nome",
@@ -95,6 +98,21 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                         ? controller.pacientes!.map((paciente) {
                             return DataRow(
                                 selected: paciente["cpf"] == controller.cpf,
+                                color: MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    if (states
+                                        .contains(MaterialState.selected)) {
+                                      return Theme.of(context)
+                                          .colorScheme
+                                          .background
+                                          .withOpacity(0.4);
+                                    } else {
+                                      return Theme.of(context)
+                                          .colorScheme
+                                          .surface;
+                                    } // Use the component's default.
+                                  },
+                                ),
                                 onSelectChanged: (s) async {
                                   controller.setCpf(paciente["cpf"]);
                                   SharedPreferences prefs =
@@ -156,7 +174,8 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
                           title: v == true
-                              ? const Text("Você já está vinculado a esste paciente.")
+                              ? const Text(
+                                  "Você já está vinculado a esste paciente.")
                               : controller.cpf != ""
                                   ? const Text("Paciente vinculado com sucesso")
                                   : const Text(
@@ -200,8 +219,8 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                           actions: [
                             elevatedButton(
                                 context,
-                                Text("OK",
-                                    style: const TextStyle(
+                                const Text("OK",
+                                    style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,

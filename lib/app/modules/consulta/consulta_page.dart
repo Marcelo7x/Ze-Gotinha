@@ -136,14 +136,14 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                                             .colorScheme
                                             .onSecondary),
                                   ),
-                                  style: TextStyle(fontSize: 10),
+                                  style: const TextStyle(fontSize: 10),
                                   onTap: () async {
                                     FilePickerResult? result =
                                         await FilePicker.platform.pickFiles();
 
                                     if (result != null) {
                                       File file =
-                                          File(result.files.single.name!);
+                                          File(result.files.single.name);
                                       _fileInput.text = file.toString();
                                     } else {
                                       // User canceled the picker
