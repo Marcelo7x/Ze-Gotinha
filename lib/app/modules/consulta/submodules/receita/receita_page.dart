@@ -119,14 +119,19 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Gerar receita", style: TextStyle(fontSize: 20)),//*****************************titulo  */
+              Text("Gerar receita",
+                  style: TextStyle(
+                      fontSize: 20)), //*****************************titulo  */
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Observer(builder: (_) {
-                    return Container( //********************************Lista de  Medicamentos ja adicionados*/
+                    return Container(
+                        //********************************Lista de  Medicamentos ja adicionados*/
                         margin: const EdgeInsets.only(top: 20),
-                        height: (controller.listHeight ?? 0) > _height * .4? _height * .4 : controller.listHeight ,
+                        height: (controller.listHeight ?? 0) > _height * .4
+                            ? _height * .4
+                            : controller.listHeight,
                         width: _width * .55,
                         child: Observer(builder: (_) {
                           return SingleChildScrollView(
@@ -146,7 +151,8 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(  //*********************************************************Adicionar medicamentos */
+                      Row(
+                        //*********************************************************Adicionar medicamentos */
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
@@ -229,7 +235,14 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 20, top: 20),
-                    child: elevatedButton(context, "Adicionar medicamento", () {
+                    child: elevatedButton(
+                        context,
+                        const Text("Adicionar Medicamento",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            )), () {
                       if (_remedio.text == "" ||
                           _qtd.text == "" ||
                           _obs.text == "") {
@@ -239,7 +252,14 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
                             title: const Text(
                                 "Todos os campos devem ser preenchidos. Tente novamente."),
                             actions: [
-                              elevatedButton(context, "OK", () {
+                              elevatedButton(
+                                  context,
+                                  const Text("OK",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      )), () {
                                 Navigator.pop(context);
                               }),
                             ],
@@ -259,14 +279,30 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
               ),
             ],
           ),
-          Padding(  //*********************************************************Finalizar cancelar */
+          Padding(
+            //*********************************************************Finalizar cancelar */
             padding:
                 const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  elevatedButton(context, "Finalizar", () {}),
-                  elevatedButton(context, "Cancelar", () {
+                  elevatedButton(
+                      context,
+                      const Text("Finalizar",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )),
+                      () {}),
+                  elevatedButton(
+                      context,
+                      const Text("Cancelar",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )), () {
                     Modular.to.pushNamed("/home/medico/search/");
                   })
                 ]),

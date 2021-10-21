@@ -33,19 +33,35 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(//********************************************************** Histórico
+                    SizedBox(
+                        //********************************************************** Histórico
                         height: 40,
-                        child: elevatedButton(context, "Histórico", () {
-                          Modular.to.pushNamed("/home/medico/consulta/historico/");
+                        child: elevatedButton(
+                            context,
+                            const Text("Hístorico",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                )), () {
+                          Modular.to
+                              .pushNamed("/home/medico/consulta/historico/");
                         })),
                     Padding(
                       padding: const EdgeInsets.only(left: 50),
                       child: SizedBox(
                           height: 40,
-                          child: elevatedButton(//********************************************************** Cartao de Vacina
-                              context, "Cartão de Vacina", () {
-                                Modular.to.pushNamed("/home/medico/vacina/");
-                              })),
+                          child: elevatedButton(
+                              //********************************************************** Cartao de Vacina
+                              context,
+                              const Text("Cartão de Vacina",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  )), () {
+                            Modular.to.pushNamed("/home/medico/vacina/");
+                          })),
                     ),
                   ],
                 ),
@@ -54,7 +70,8 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                   child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(//********************************************************** Sistomas
+                  Column(
+                    //********************************************************** Sistomas
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text("Sintomas", style: TextStyle(fontSize: 20)),
@@ -80,7 +97,8 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                       ),
                     ],
                   ),
-                  Padding(//********************************************************** Selecionar arquivo
+                  Padding(
+                    //********************************************************** Selecionar arquivo
                     padding: const EdgeInsets.only(left: 20),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -121,7 +139,14 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                                   //decoration: BoxDecoration(
                                   //borderRadius: BorderRadius.circular(20)),
                                   child: elevatedButton(
-                                      context, "Selecionar", () {})),
+                                      context,
+                                      const Text("Selecionar",
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          )),
+                                      () {})),
                             ],
                           ),
                         ),
@@ -136,14 +161,29 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                   SizedBox(
                       //*****************************************Gerar Receita */
                       height: 40,
-                      child: elevatedButton(context, "Gerar receita", () {
+                      child: elevatedButton(
+                          context,
+                          const Text("Gerar Receita",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              )), () {
                         Modular.to.pushNamed("/home/medico/consulta/receita/");
                       })),
                   Padding(
                     padding: const EdgeInsets.only(left: 50),
-                    child: SizedBox(//***************************************** Cancelar
+                    child: SizedBox(
+                        //***************************************** Cancelar
                         height: 40,
-                        child: elevatedButton(context, "Cancelar", () {
+                        child: elevatedButton(
+                            context,
+                            const Text("Cancelar",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                )), () {
                           Modular.to.pushNamed("/home/medico/");
                         })),
                   ),

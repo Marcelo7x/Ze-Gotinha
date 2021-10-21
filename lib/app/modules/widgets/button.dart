@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 Widget elevatedButton(
-    BuildContext context, String label, void Function() function) {
+    BuildContext context, Text label, void Function() function,
+    {double? textSize, Color? color}) {
+
   return ElevatedButton(
       onPressed: function,
       style: ButtonStyle(
@@ -12,16 +14,13 @@ Widget elevatedButton(
             if (states.contains(MaterialState.hovered)) {
               return Theme.of(context).colorScheme.secondary;
             }
-            return Theme.of(context)
-                .colorScheme
-                .secondary; // Use the component's default.
+            return color ??
+                Theme.of(context)
+                    .colorScheme
+                    .secondary; // Use the component's default.
           },
         ),
       ),
-      child: Text(label,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          )));
+      child: label
+  );
 }

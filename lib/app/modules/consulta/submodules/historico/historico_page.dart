@@ -35,18 +35,25 @@ class _HistoricoPageState extends ModularState<HistoricoPage, HistoricoStore> {
                   const Text("Sintomas",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Text(list["sintomas"]!, style: TextStyle(fontSize: 14)),
+                  Text(list["sintomas"]!, style: const TextStyle(fontSize: 14)),
                   const Text("\nMedicamentos",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Text(list["medicamentos"]!, style: TextStyle(fontSize: 14)),
+                  Text(list["medicamentos"]!, style: const TextStyle(fontSize: 14)),
                 ],
               ),
             ),
           ),
         ),
         actions: [
-          elevatedButton(context, "OK", () {
+          elevatedButton(
+              context,
+              const Text("OK",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  )), () {
             Navigator.pop(context);
           }),
         ],

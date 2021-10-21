@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ze_gotinha/app/modules/class/loggin.dart';
-import 'package:ze_gotinha/app/modules/consulta/consulta_page.dart';
-import 'package:ze_gotinha/app/modules/home/home_module.dart';
-import 'package:ze_gotinha/app/modules/home/home_store.dart';
 import 'package:ze_gotinha/app/modules/search/search_store.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
 
@@ -49,24 +45,31 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                   height: 50,
                   padding: const EdgeInsets.only(left: 10),
                   child: TextField(
-                      //login
-                      controller: _searchController,
-                      autofocus: true,
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          icon: Icon(Icons.person,
-                              color: Theme.of(context).colorScheme.secondary),
-                          hintText: "Digite o nome do paciente"),
-                      style: TextStyle(fontSize: 20),),
+                    //login
+                    controller: _searchController,
+                    autofocus: true,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        icon: Icon(Icons.person,
+                            color: Theme.of(context).colorScheme.secondary),
+                        hintText: "Digite o nome do paciente"),
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
                 Container(
                     //********************************************************* Search Button */
                     width: _width * .1,
                     height: 50,
-                    child: elevatedButton(context, "Buscar Paciente", () {
+                    child: elevatedButton(
+                        context,
+                        const Text("Buscar Paciente",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            )), () {
                       controller.getPacientes(s: _searchController.text);
                       controller.setCpf(""); //como isso atualiza a tabela
-                      
                     })),
               ],
             ),
@@ -132,8 +135,14 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
               children: [
                 SizedBox(
                     height: 35,
-                    child:
-                        elevatedButton(context, "Solicitar Vínculo", () async {
+                    child: elevatedButton(
+                        context,
+                        const Text("Solicitar Vínculo",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            )), () async {
                       var v = controller.getViculacion(int.parse(
                           controller.user!)); //verifica se ja esta vinculado
 
@@ -147,13 +156,20 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
                           title: v == true
-                              ? Text("Você já está vinculado a esste paciente.")
+                              ? const Text("Você já está vinculado a esste paciente.")
                               : controller.cpf != ""
-                                  ? Text("Paciente vinculado com sucesso")
-                                  : Text(
+                                  ? const Text("Paciente vinculado com sucesso")
+                                  : const Text(
                                       "Você deve selecionar um paciente antes de solicitar um vínculo."),
                           actions: [
-                            elevatedButton(context, "OK", () {
+                            elevatedButton(
+                                context,
+                                const Text("OK",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    )), () {
                               Navigator.pop(context);
                             }),
                           ],
@@ -162,7 +178,14 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                     })),
                 SizedBox(
                   height: 35,
-                  child: elevatedButton(context, "Fazer Consulta", () async {
+                  child: elevatedButton(
+                      context,
+                      const Text("Fazer Consulta",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )), () async {
                     final v = controller.getViculacion(int.parse(
                         controller.user!)); //verifica se esta vinculado
                     if (!v) {
@@ -175,7 +198,14 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                               : const Text(
                                   "Você não está vinculado a este paciente. \nSolicite o vínculo antes de prosseguir para a consulta."),
                           actions: [
-                            elevatedButton(context, "OK", () {
+                            elevatedButton(
+                                context,
+                                Text("OK",
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    )), () {
                               Navigator.pop(context);
                             }),
                           ],
@@ -188,7 +218,14 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                 ),
                 SizedBox(
                   height: 35,
-                  child: elevatedButton(context, "Vacinar", () async {
+                  child: elevatedButton(
+                      context,
+                      const Text("Vacinar",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )), () async {
                     final v = controller.getViculacion(int.parse(
                         controller.user!)); //verifica se esta vinculado
                     if (!v) {
@@ -201,7 +238,14 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                               : const Text(
                                   "Você não está vinculado a este paciente. \nSolicite o vinculo antes de prosseguir para a vacina."),
                           actions: [
-                            elevatedButton(context, "OK", () {
+                            elevatedButton(
+                                context,
+                                const Text("OK",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    )), () {
                               Navigator.pop(context);
                             }),
                           ],

@@ -121,7 +121,14 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                       margin: const EdgeInsets.only(top: 20),
                       width: 120,
                       height: 50,
-                      child: elevatedButton(context, "Entrar", () async {
+                      child: elevatedButton(
+                          context,
+                          const Text("Entrar",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              )), () async {
                         controller.setUserPassword(_username.text.toString(),
                             _password.text.toString());
                         //controller.login();

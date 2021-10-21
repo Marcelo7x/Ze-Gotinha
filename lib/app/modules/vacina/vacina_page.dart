@@ -107,10 +107,24 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                elevatedButton(context, "Cancelar", () {
+                elevatedButton(
+                    context,
+                    Text("Cancelar",
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        )), () {
                   Navigator.pop(context);
                 }),
-                elevatedButton(context, "Vacinar", () {
+                elevatedButton(
+                    context,
+                    Text("Vacinar",
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        )), () {
                   controller.setVacina(
                       vacina, _dose.text, _data.text, _lote.text);
                   Navigator.pop(context);
@@ -128,13 +142,14 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
           Padding(
             padding: const EdgeInsets.all(10),
             child: Row(
-              children:  [
-                GestureDetector(onTap: () => Modular.to.popAndPushNamed("/home/medico/") ,child: Icon(Icons.arrow_back)),
+              children: [
+                GestureDetector(
+                    onTap: () => Modular.to.popAndPushNamed("/home/medico/"),
+                    child: Icon(Icons.arrow_back)),
                 Text("voltar"),
               ],
             ),
           ),
-
           Container(
             //********************************************************** Search */
             width: _width * .46,
@@ -171,7 +186,14 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                     height: 50,
                     //decoration: BoxDecoration(
                     //borderRadius: BorderRadius.circular(20)),
-                    child: elevatedButton(context, "Buscar Vacina", () {
+                    child: elevatedButton(
+                        context,
+                        Text("Buscar Vacina",
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            )), () {
                       controller.getVacinas(s: _searchController.text);
                     })),
               ],
@@ -192,20 +214,20 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                               ? controller.vacina!
                                   .map(
                                     (vacina) => ListTile(
-                                        title: Text(vacina),
-                                        enableFeedback: true,
-                                        onTap: () {
-                                          _setVacina(vacina);
-                                        },
+                                      title: Text(vacina),
+                                      enableFeedback: true,
+                                      onTap: () {
+                                        _setVacina(vacina);
+                                      },
                                     ),
-
                                   )
                                   .toList()
                               : [
                                   const Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: ListTile(
-                                      title: Text("Vacinas", style: TextStyle(fontSize: 20)),
+                                      title: Text("Vacinas",
+                                          style: TextStyle(fontSize: 20)),
                                     ),
                                   ),
                                 ]),
