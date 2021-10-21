@@ -27,36 +27,6 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
 
     controller.getUser();
 
-    var _pacientes = controller.getPacientes();
-    _getDataRows() {
-      List<DataRow> _dataRows = [
-        DataRow(cells: <DataCell>[
-          DataCell(Text("name")),
-          DataCell(Text("cpf")),
-        ])
-      ];
-
-      for (var i = 0; i < _pacientes.length; i++) {
-        _dataRows.add(DataRow(
-            selected: _pacientes[i]["cpf"] == controller.cpf,
-            onSelectChanged: (s) async {
-              controller.setCpf(_pacientes[i]["cpf"]);
-              //_getDataRows();
-              //bool v = await controller.getViculacion(_pacientes[i]["cpf"]);
-
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.setString("paciente", _pacientes[i]["cpf"]);
-            },
-            cells: <DataCell>[
-              DataCell(Text(_pacientes[i]["name"]!)),
-              DataCell(Text(_pacientes[i]["cpf"]!)),
-            ]));
-      }
-
-      _dataRows.removeAt(0);
-      return _dataRows;
-    }
-
     return Container(
       //********************************************************* Search */
       child: Column(
@@ -87,30 +57,28 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                           icon: Icon(Icons.person,
                               color: Theme.of(context).colorScheme.secondary),
                           hintText: "Digite o nome do paciente"),
-                      style: TextStyle(fontSize: 20)),
+                      style: TextStyle(fontSize: 20),),
                 ),
                 Container(
                     //********************************************************* Search Button */
-                    //margin: const EdgeInsets.only(top: 20),
                     width: _width * .1,
                     height: 50,
-                    //decoration: BoxDecoration(
-                    //borderRadius: BorderRadius.circular(20)),
                     child: elevatedButton(context, "Buscar Paciente", () {
-                      _pacientes =
-                          controller.getPacientes(s: _searchController.text);
+                      controller.getPacientes(s: _searchController.text);
                       controller.setCpf(""); //como isso atualiza a tabela
-                      //_getDataRows();
+                      
                     })),
               ],
             ),
           ),
           SingleChildScrollView(
-              child: SizedBox(
-                  height: _height * .5,
-                  width: _width * .45,
-                  child: Observer(builder: (_) {
-                    return DataTable(columns: const [
+            child: SizedBox(
+              height: _height * .5,
+              width: _width * .45,
+              child: Observer(
+                builder: (_) {
+                  return DataTable(
+                    columns: const [
                       DataColumn(
                           label: Text("Nome",
                               style: TextStyle(
@@ -119,8 +87,43 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                           label: Text("CPF",
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold)))
-                    ], rows: _getDataRows());
-                  }))),
+                    ],
+                    rows: controller.pacientes!.length != 0
+                        ? controller.pacientes!.map((paciente) {
+                            return DataRow(
+                                selected: paciente["cpf"] == controller.cpf,
+                                onSelectChanged: (s) async {
+                                  controller.setCpf(paciente["cpf"]);
+                                  SharedPreferences prefs =
+                                      await SharedPreferences.getInstance();
+                                  prefs.setString("paciente", paciente["cpf"]!);
+                                },
+                                cells: <DataCell>[
+                                  DataCell(
+                                    Text(paciente["name"]!),
+                                  ),
+                                  DataCell(
+                                    Text(paciente["cpf"]!),
+                                  ),
+                                ]);
+                          }).toList()
+                        : [
+                            const DataRow(
+                              cells: [
+                                DataCell(
+                                  Text("-----"),
+                                ),
+                                DataCell(
+                                  Text("-----"),
+                                ),
+                              ],
+                            ),
+                          ],
+                  );
+                },
+              ),
+            ),
+          ),
           Padding(
             //************************************************************ Solicitar Vinculo, Fazer consulta*/
             padding: const EdgeInsets.only(bottom: 20),

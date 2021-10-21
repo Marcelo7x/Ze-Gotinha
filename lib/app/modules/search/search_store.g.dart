@@ -24,6 +24,21 @@ mixin _$SearchStore on SearchStoreBase, Store {
     });
   }
 
+  final _$pacientesAtom = Atom(name: 'SearchStoreBase.pacientes');
+
+  @override
+  List<Map<String, String>>? get pacientes {
+    _$pacientesAtom.reportRead();
+    return super.pacientes;
+  }
+
+  @override
+  set pacientes(List<Map<String, String>>? value) {
+    _$pacientesAtom.reportWrite(value, super.pacientes, () {
+      super.pacientes = value;
+    });
+  }
+
   final _$getUserAsyncAction = AsyncAction('SearchStoreBase.getUser');
 
   @override
@@ -46,9 +61,21 @@ mixin _$SearchStore on SearchStoreBase, Store {
   }
 
   @override
+  dynamic getPacientes({String s = ""}) {
+    final _$actionInfo = _$SearchStoreBaseActionController.startAction(
+        name: 'SearchStoreBase.getPacientes');
+    try {
+      return super.getPacientes(s: s);
+    } finally {
+      _$SearchStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-cpf: ${cpf}
+cpf: ${cpf},
+pacientes: ${pacientes}
     ''';
   }
 }

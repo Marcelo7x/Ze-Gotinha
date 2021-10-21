@@ -25,23 +25,27 @@ abstract class SearchStoreBase with Store {
     cpf = n;
   }
 
+  @observable
+   List<Map<String, String>>? pacientes = [];
+
+  @action
   getPacientes({String s = ""}) {//gera lista de pacientes
     final _bd = Modular.get<BD>(defaultValue: BD());
     var _users = _bd.searchUsers(s: s);
     //var _users = users != null ? users : _bd.usuarios;
 
-    List<Map<String, String>>? pacientes;
+    List<Map<String, String>>? p;
 
     for (var element in _users!) {
       //print(element.cpf);
-      pacientes != null
-          ? pacientes.add({"name": element.name, "cpf": element.cpf})
-          : pacientes = [
+      p != null
+          ? p.add({"name": element.name, "cpf": element.cpf})
+          : p = [
               {"name": element.name, "cpf": element.cpf}
             ];
     }
 
-    return pacientes;
+    pacientes = p;
   }
 
   getViculacion(int crm) {//verifica o vinculo do medico e paciente
