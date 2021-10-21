@@ -25,7 +25,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
     final _dose = TextEditingController();
     final _searchController = TextEditingController();
 
-    var _vacinas = controller.getVacinas();
+    //var _vacinas = controller.getVacinas();
     _setVacina(String vacina) {
       showDialog(
         context: context,
@@ -125,6 +125,16 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
     return Container(
       child: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children:  [
+                GestureDetector(onTap: () => Modular.to.popAndPushNamed("/home/medico/") ,child: Icon(Icons.arrow_back)),
+                Text("voltar"),
+              ],
+            ),
+          ),
+
           Container(
             //********************************************************** Search */
             width: _width * .46,
@@ -162,8 +172,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                     //decoration: BoxDecoration(
                     //borderRadius: BorderRadius.circular(20)),
                     child: elevatedButton(context, "Buscar Vacina", () {
-                      _vacinas =
-                          controller.getVacinas(s: _searchController.text);
+                      controller.getVacinas(s: _searchController.text);
                     })),
               ],
             ),
@@ -193,8 +202,11 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                                   )
                                   .toList()
                               : [
-                                  const ListTile(
-                                    title: Text("Vacinas"),
+                                  const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: ListTile(
+                                      title: Text("Vacinas", style: TextStyle(fontSize: 20)),
+                                    ),
                                   ),
                                 ]),
                     );
