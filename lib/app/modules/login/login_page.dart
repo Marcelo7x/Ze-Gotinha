@@ -138,7 +138,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                         //     : () {};
 
                         if (await controller.login()) {
-                          Modular.to.pushNamed("/home/${await getUser()}/");
+                          Modular.to.popAndPushNamed("/home/${await getUser()}/");
+                          
                         }
                       })),
                   Padding(

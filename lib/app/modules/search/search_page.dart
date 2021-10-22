@@ -208,6 +208,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                     final v = controller.getViculacion(int.parse(
                         controller.user!)); //verifica se esta vinculado
                     if (!v) {
+                      print(Modular.get(defaultValue: HomeStore()).setIndex(2));
                       showDialog(
                         context: context,
                         builder: (BuildContext context) => AlertDialog(
@@ -231,6 +232,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                         ),
                       );
                     } else {
+                      Modular.get(defaultValue: HomeStore()).setIndex(2);
                       Modular.to.pushNamed("/home/medico/consulta");
                     }
                   }),
@@ -271,6 +273,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                         ),
                       );
                     } else {
+                      Modular.get(defaultValue: HomeStore()).setIndex(1);
                       Modular.to.pushNamed("/home/medico/vacina");
                     }
                   }),

@@ -21,7 +21,7 @@ class AppModule extends Module {
     Bind.lazySingleton((i) => VacinaStore()),
     Bind.lazySingleton((i) => ConsultaStore()),
     Bind.lazySingleton((i) => SearchStore()),
-    Bind.singleton((i) => Loggin()),
+    Bind.lazySingleton((i) => Loggin()),
     Bind.lazySingleton((i) => elevatedButton),
   ];
 

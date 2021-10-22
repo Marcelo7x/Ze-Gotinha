@@ -25,4 +25,12 @@ abstract class HomeStoreBase with Store implements Disposable {
       return Modular.to.pushNamed("/home/medico/consulta/");
     }
   }
+
+  @observable
+  int pageIndex = 0;
+
+  @action
+  setIndex(int i) {
+    pageIndex = i;
+  }
 }
