@@ -121,7 +121,7 @@ class _HistoricoPageState extends ModularState<HistoricoPage, HistoricoStore> {
           child: Row(
             children: [
               GestureDetector(
-                  onTap: () => Modular.to.pushNamed("/home/medico/consulta/"),
+                  onTap: () => Modular.to.pushNamed("/home/consulta/"),
                   child: Icon(Icons.arrow_back)),
               Text("voltar"),
             ],

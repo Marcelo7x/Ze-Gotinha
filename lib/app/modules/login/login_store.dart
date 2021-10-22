@@ -22,6 +22,7 @@ abstract class LoginStoreBase with Store {
   String password = "";
 
   Medico? medico;
+  Enfermeiro? enfermeiro;
 
   @action
   setUserPassword(String u, String p) {
@@ -36,6 +37,8 @@ abstract class LoginStoreBase with Store {
   Future<bool> login() async {
     //faz o login
     if (await loginMedico()) {
+      return true;
+    } else if (await loginEnfermeiro()) {
       return true;
     }
     //TODO: fazer login do paciente e enfermeira
@@ -58,5 +61,18 @@ abstract class LoginStoreBase with Store {
     return false;
   }
 
-  // Enfermeiro loginEnfermeiro() {}
+  Future<bool> loginEnfermeiro() async {
+    final _bd = Modular.get<BD>(defaultValue: BD());
+    enfermeiro = _bd.searchEnfermeiro(int.parse(username));
+
+    if (enfermeiro != null) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('user', "${enfermeiro!.corem}");
+      prefs.setString('type', "enfermeiro");
+
+      Modular.get(defaultValue: Loggin.setLoggin(enfermeiro: enfermeiro));
+      return true;
+    }
+    return false;
+  }
 }

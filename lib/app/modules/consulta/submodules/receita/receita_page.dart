@@ -294,7 +294,7 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           )), () {
-                    Modular.to.pushNamed("/home/medico/consulta/");
+                    Modular.to.pushNamed("/home/consulta/");
                   }),
                   elevatedButton(
                       context,
@@ -304,7 +304,7 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           )), () {
-                    Modular.to.pushNamed("/home/medico/consulta/");
+                    Modular.to.pushNamed("/home/consulta/");
                   })
                 ]),
           )

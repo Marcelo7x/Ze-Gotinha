@@ -233,7 +233,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                       );
                     } else {
                       Modular.get(defaultValue: HomeStore()).setIndex(2);
-                      Modular.to.pushNamed("/home/medico/consulta");
+                      Modular.to.pushNamed("/home/consulta/");
                     }
                   }),
                 ),
@@ -274,7 +274,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                       );
                     } else {
                       Modular.get(defaultValue: HomeStore()).setIndex(1);
-                      Modular.to.pushNamed("/home/medico/vacina");
+                      Modular.to.pushNamed("/home/vacina/");
                     }
                   }),
                 ),

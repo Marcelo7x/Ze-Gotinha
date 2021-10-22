@@ -25,6 +25,13 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
     final _dose = TextEditingController();
     final _searchController = TextEditingController();
 
+    getUser() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final user = prefs.getString("type");
+      //final user = Modular.get(defaultValue: Loggin.loggin);
+      return user;
+    }
+
     //var _vacinas = controller.getVacinas();
     _setVacina(String vacina) {
       showDialog(
@@ -144,7 +151,10 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
             child: Row(
               children: [
                 GestureDetector(
-                    onTap: () => Modular.to.pushNamed("/home/medico/"),
+                    onTap: () async {
+                      
+                      Modular.to.pushNamed("/home/", arguments: "${await getUser()}");
+                    },
                     child: Icon(Icons.arrow_back)),
                 Text("voltar"),
               ],

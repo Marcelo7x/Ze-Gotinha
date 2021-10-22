@@ -24,6 +24,28 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$qrAtom = Atom(name: 'HomeStoreBase.qr');
+
+  @override
+  bool get qr {
+    _$qrAtom.reportRead();
+    return super.qr;
+  }
+
+  @override
+  set qr(bool value) {
+    _$qrAtom.reportWrite(value, super.qr, () {
+      super.qr = value;
+    });
+  }
+
+  final _$setQRAsyncAction = AsyncAction('HomeStoreBase.setQR');
+
+  @override
+  Future setQR() {
+    return _$setQRAsyncAction.run(() => super.setQR());
+  }
+
   final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase');
 
@@ -52,7 +74,8 @@ mixin _$HomeStore on HomeStoreBase, Store {
   @override
   String toString() {
     return '''
-pageIndex: ${pageIndex}
+pageIndex: ${pageIndex},
+qr: ${qr}
     ''';
   }
 }

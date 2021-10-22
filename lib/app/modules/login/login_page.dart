@@ -131,14 +131,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                               )), () async {
                         controller.setUserPassword(_username.text.toString(),
                             _password.text.toString());
-                        //controller.login();
-
-                        // controller.logginError == false
-                        //     ? Modular.to.pushNamed("/home-medico/")
-                        //     : () {};
 
                         if (await controller.login()) {
-                          Modular.to.popAndPushNamed("/home/${await getUser()}/");
+                          Modular.to.popAndPushNamed("/home/", arguments: "${await getUser()}");
                           
                         }
                       })),

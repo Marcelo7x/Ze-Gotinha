@@ -48,7 +48,7 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                                   color: Colors.white,
                                 )), () {
                           Modular.to
-                              .pushNamed("/home/medico/consulta/historico/");
+                              .pushNamed("/home/consulta/historico/");
                         })),
                     Padding(
                       padding: const EdgeInsets.only(left: 50),
@@ -63,7 +63,7 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   )), () {
-                            Modular.to.pushNamed("/home/medico/vacina/");
+                            Modular.to.pushNamed("/home/vacina/");
                           })),
                     ),
                   ],
@@ -196,7 +196,7 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               )), () {
-                        Modular.to.pushNamed("/home/medico/consulta/receita/");
+                        Modular.to.pushNamed("/home/consulta/receita/");
                       })),
                   Padding(
                     padding: const EdgeInsets.only(left: 50),
@@ -211,7 +211,7 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 )), () {
-                          Modular.to.pushNamed("/home/medico/");
+                          Modular.to.pushNamed("/home/");
                         })),
                   ),
                 ],

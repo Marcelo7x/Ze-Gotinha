@@ -15,9 +15,9 @@ class BD {
   final List<Medico> _medicos = [Medico(1), Medico(2), Medico(3)];
 
   final List<Enfermeiro> _enfermeiros = [
-    Enfermeiro(1),
-    Enfermeiro(2),
-    Enfermeiro(3)
+    Enfermeiro(4),
+    Enfermeiro(5),
+    Enfermeiro(6)
   ];
 
   List<Usuario> get usuarios => _users;
