@@ -92,7 +92,7 @@ class BD {
     }
 
     if (list == null) {
-      return _vacinas;
+      return null;
     }
 
     return list;

@@ -223,6 +223,10 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                               color: Colors.white,
                             )), () {
                       controller.getVacinas(s: _searchController.text);
+                      if (controller.vacina == null) {
+                        _popup(
+                            context, "A vacina não foi encontrada.\nVerifique o nome e tente novamente.");
+                      }
                     })),
               ],
             ),
