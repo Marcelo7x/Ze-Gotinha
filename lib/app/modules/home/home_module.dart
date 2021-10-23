@@ -3,14 +3,13 @@ import 'package:ze_gotinha/app/modules/cartao_vacina/cartao_vacina_module.dart';
 import 'package:ze_gotinha/app/modules/cartao_vacina/cartao_vacina_store.dart';
 import 'package:ze_gotinha/app/modules/consulta/consulta_module.dart';
 import 'package:ze_gotinha/app/modules/consulta/consulta_store.dart';
-import 'package:ze_gotinha/app/modules/home/pages/medico_home_page.dart';
+import 'package:ze_gotinha/app/modules/home/home_page.dart';
 import 'package:ze_gotinha/app/modules/search/search_module.dart';
 import 'package:ze_gotinha/app/modules/search/search_store.dart';
 import 'package:ze_gotinha/app/modules/vacina/vacina_module.dart';
 import 'package:ze_gotinha/app/modules/vacina/vacina_store.dart';
 import '../home/home_store.dart'; 
 
-import 'pages/enfermeiro_home_page.dart';
  
 class HomeModule extends Module {
   @override
@@ -23,7 +22,7 @@ class HomeModule extends Module {
 
  @override
  final List<ModularRoute> routes = [
-   ChildRoute(Modular.initialRoute, child: (_, args) => args.data == "medico"? HomePage() : EfHomePage(), children: [
+   ChildRoute(Modular.initialRoute, child: (_, args) => HomePage(), children: [
    ModuleRoute("/vacina", module: VacinaModule()),
    ModuleRoute("/consulta", module: ConsultaModule()),
    ModuleRoute("/search", module: SearchModule()),

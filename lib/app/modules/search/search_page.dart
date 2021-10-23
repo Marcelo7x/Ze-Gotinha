@@ -246,7 +246,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
-                          )), () async {
+                          ),), () async {
                     final v = controller.getViculacion(int.parse(
                         controller.user!)); //verifica se esta vinculado
                     if (!v) {

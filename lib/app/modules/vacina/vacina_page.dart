@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ze_gotinha/app/modules/home/home_store.dart';
+import 'package:ze_gotinha/app/modules/home_enfermeiro/home_enfermeiro_store.dart';
 import 'package:ze_gotinha/app/modules/vacina/vacina_store.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
 
@@ -84,7 +86,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                       icon: Icon(Icons.medication,
                           color: Theme.of(context).colorScheme.onSecondary),
                     ),
-                    style: TextStyle(fontSize: 14)),
+                    style: const TextStyle(fontSize: 14)),
               ),
               Container(
                 margin: const EdgeInsets.only(left: 10),
@@ -106,7 +108,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                       icon: Icon(Icons.medication,
                           color: Theme.of(context).colorScheme.onSecondary),
                     ),
-                    style: TextStyle(fontSize: 14)),
+                    style: const TextStyle(fontSize: 14)),
               )
             ]),
           ),
@@ -116,8 +118,8 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
               children: [
                 elevatedButton(
                     context,
-                    Text("Cancelar",
-                        style: const TextStyle(
+                    const Text("Cancelar",
+                        style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -126,8 +128,8 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                 }),
                 elevatedButton(
                     context,
-                    Text("Vacinar",
-                        style: const TextStyle(
+                    const Text("Vacinar",
+                        style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -152,11 +154,16 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
               children: [
                 GestureDetector(
                     onTap: () async {
-                      
-                      Modular.to.pushNamed("/home/", arguments: "${await getUser()}");
+                      if (await getUser() == "enfermeiro") {
+                        Modular.get(defaultValue: HomeEnfermeiroStore())
+                            .setIndex(0);
+                      } else if (await getUser() == "medico") {
+                        Modular.get(defaultValue: HomeStore()).setIndex(0);
+                      }
+                      Navigator.pop(context);
                     },
                     child: Icon(Icons.arrow_back)),
-                Text("voltar"),
+                const Text("voltar"),
               ],
             ),
           ),
@@ -198,8 +205,8 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                     //borderRadius: BorderRadius.circular(20)),
                     child: elevatedButton(
                         context,
-                        Text("Buscar Vacina",
-                            style: const TextStyle(
+                        const Text("Buscar Vacina",
+                            style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,

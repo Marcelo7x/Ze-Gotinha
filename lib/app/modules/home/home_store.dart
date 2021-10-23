@@ -18,7 +18,6 @@ abstract class HomeStoreBase with Store implements Disposable {
   @action
   getPage(int index) {
     if (index == 0) {
-      if (Modular.args.data == "medico") return;
       return Modular.to.pushNamed("/home/search/");
     } else if (index == 1) {
       return Modular.to.pushNamed("/home/cartao_vacina/");
@@ -35,16 +34,4 @@ abstract class HomeStoreBase with Store implements Disposable {
     pageIndex = i;
   }
 
-  @observable
-  bool qr = false;
-
-  @action
-  setQR() async {
-    qr = !qr;
-    await Future.delayed(Duration(seconds: 3));
-
-    setIndex(1);
-    
-    return Modular.to.pushNamed("/home/vacina/");
-  }
 }

@@ -9,6 +9,8 @@ import 'modules/consulta/consulta_module.dart';
 import 'modules/consulta/consulta_store.dart';
 import 'modules/home/home_module.dart';
 import 'modules/home/home_store.dart';
+import 'modules/home_enfermeiro/home_enfermeiro_module.dart';
+import 'modules/home_enfermeiro/home_enfermeiro_store.dart';
 import 'modules/search/search_store.dart';
 import 'modules/vacina/vacina_module.dart';
 import 'modules/vacina/vacina_store.dart';
@@ -17,6 +19,7 @@ class AppModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.singleton((i) => HomeStore()),
+    Bind.singleton((i) => HomeEnfermeiroStore()),
     Bind.singleton((i) => BD()),
     Bind.lazySingleton((i) => VacinaStore()),
     Bind.lazySingleton((i) => ConsultaStore()),
@@ -32,6 +35,7 @@ class AppModule extends Module {
     ModuleRoute("/vacina/", module: VacinaModule()),
     ModuleRoute("/consulta/", module: ConsultaModule()),
     ModuleRoute("/receita/", module: ReceitaModule()),
+    ModuleRoute("/home-enfermeiro/", module: HomeEnfermeiroModule()),
   ];
 
 }

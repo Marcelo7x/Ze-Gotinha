@@ -133,8 +133,11 @@ class _LoginPageState extends ModularState<LoginPage, LoginStore> {
                             _password.text.toString());
 
                         if (await controller.login()) {
-                          Modular.to.popAndPushNamed("/home/", arguments: "${await getUser()}");
-                          
+                          if (await getUser() == "medico") {
+                            Modular.to.popAndPushNamed("/home/");
+                          } else if (await getUser() == "enfermeiro") {
+                            Modular.to.popAndPushNamed("/home-enfermeiro/");
+                          }
                         }
                       })),
                   Padding(
