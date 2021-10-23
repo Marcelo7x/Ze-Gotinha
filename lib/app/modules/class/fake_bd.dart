@@ -26,10 +26,11 @@ class BD {
 
   List<Usuario>? searchUsers({String s = ""}) {
     if (s == "") {
-      return _users;
+      return null;
     }
 
     List<Usuario>? list;
+    
     for (var element in _users) {
       if (element.name.toLowerCase().compareTo(s.toLowerCase()) == 0 ||
           element.cpf.toLowerCase().compareTo(s.toLowerCase()) == 0) {
@@ -38,7 +39,7 @@ class BD {
     }
 
     if (list == null) {
-      return _users;
+      return null;
     }
 
     return list;

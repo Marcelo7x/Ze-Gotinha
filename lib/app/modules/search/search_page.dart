@@ -72,6 +72,10 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                             )), () {
                       controller.getPacientes(s: _searchController.text);
                       controller.setCpf(""); //como isso atualiza a tabela
+                      if (controller.pacientes == null) {
+                        _popup(context,
+                            "Paciente não encontrado.\nVerifique o nome e tente novamente.");
+                      }
                     })),
               ],
             ),
@@ -94,7 +98,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold)))
                     ],
-                    rows: controller.pacientes!.length != 0
+                    rows: controller.pacientes != null
                         ? controller.pacientes!.map((paciente) {
                             return DataRow(
                                 selected: paciente["cpf"] == controller.cpf,
@@ -241,12 +245,14 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                   height: 35,
                   child: elevatedButton(
                       context,
-                      const Text("Vacinar",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),), () async {
+                      const Text(
+                        "Vacinar",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ), () async {
                     final v = controller.getViculacion(int.parse(
                         controller.user!)); //verifica se esta vinculado
                     if (!v) {
@@ -285,4 +291,25 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
       ),
     );
   }
+}
+
+_popup(BuildContext context, String msg) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: Text(msg),
+      actions: [
+        elevatedButton(
+            context,
+            const Text("OK",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                )), () {
+          Navigator.pop(context);
+        }),
+      ],
+    ),
+  );
 }
