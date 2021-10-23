@@ -96,9 +96,41 @@ class _HomeEnfermeiroPageState
                                 : Theme.of(context).colorScheme.surface,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: const Tab(
-                            icon: Icon(Icons.home),
-                            text: "Zé Gotinha",
+                          child: Container(
+                            width: (_width * .5) / 4,
+                            height: _height * 0.09,
+                            decoration: BoxDecoration(
+                              color: 0 == controller.pageIndex
+                                  ? Theme.of(context).colorScheme.secondary
+                                  : Theme.of(context).colorScheme.surface,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(Icons.home,
+                                    color: controller.pageIndex == 0
+                                        ? Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary
+                                        : Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary),
+                                Text(
+                                  "Zé Gotinha",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: controller.pageIndex == 0
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .onPrimary
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .onSecondary),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -126,9 +158,24 @@ class _HomeEnfermeiroPageState
                                 : Theme.of(context).colorScheme.surface,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: const Tab(
-                            icon: Icon(Icons.document_scanner_outlined),
-                            text: "Cartão de Vacina",
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              
+                                Icon(Icons.document_scanner_outlined,
+                                  color: controller.pageIndex == 1? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                ),
+                                Text( "Cartão de Vacina",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: controller.pageIndex == 1? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                  ),
+                                ),
+                              
+                            ],
                           ),
                         ),
                       ),
@@ -150,9 +197,24 @@ class _HomeEnfermeiroPageState
                                 : Theme.of(context).colorScheme.surface,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: const Tab(
-                            icon: Icon(Icons.person),
-                            text: "Usuário",
+                          child:Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              
+                                Icon(Icons.person,
+                                  color: controller.pageIndex == 3? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                ),
+                                Text( "Usuário",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: controller.pageIndex == 3? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                  ),
+                                ),
+                              
+                            ],
                           ),
                         ),
                       ),

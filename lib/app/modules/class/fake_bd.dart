@@ -10,6 +10,7 @@ class BD {
     Usuario("Carlos", "12345678901"),
     Usuario("Larissa", "09876543210"),
     Usuario("Marcelo", "12345098760"),
+    Usuario("Pedro Ramos", "12345543210"),
   ];
 
   final List<Medico> _medicos = [Medico(1), Medico(2), Medico(3)];
@@ -30,7 +31,7 @@ class BD {
     }
 
     List<Usuario>? list;
-    
+
     for (var element in _users) {
       if (element.name.toLowerCase().compareTo(s.toLowerCase()) == 0 ||
           element.cpf.toLowerCase().compareTo(s.toLowerCase()) == 0) {
@@ -72,8 +73,8 @@ class BD {
         .addHistory("101010", "tosse molhada", "Toma sol de boca aberta");
   }
 
-  List<Vacina> _vacinas = [
-    Vacina("PFizer"),
+  final List<Vacina> _vacinas = [
+    Vacina("Pfizer"),
     Vacina("Jacarezinho"),
     Vacina("Na bundinha"),
   ];

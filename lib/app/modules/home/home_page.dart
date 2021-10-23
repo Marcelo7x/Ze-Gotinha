@@ -58,9 +58,24 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                                 : Theme.of(context).colorScheme.surface,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: const Tab(
-                            icon: Icon(Icons.home),
-                            text: "Zé Gotinha",
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              
+                                Icon(Icons.home,
+                                  color: controller.pageIndex == 0? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                ),
+                                Text( "Zé Gotinha",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: controller.pageIndex == 0? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                  ),
+                                ),
+                              
+                            ],
                           ),
                         ),
                       ),
@@ -87,9 +102,24 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                                 : Theme.of(context).colorScheme.surface,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: const Tab(
-                            icon: Icon(Icons.document_scanner_outlined),
-                            text: "Cartão de Vacina",
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              
+                                Icon(Icons.document_scanner_outlined,
+                                  color: controller.pageIndex == 1? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                ),
+                                Text( "Cartão de Vacina",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: controller.pageIndex == 1? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                  ),
+                                ),
+                              
+                            ],
                           ),
                         ),
                       ),
@@ -116,9 +146,24 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                                 : Theme.of(context).colorScheme.surface,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: const Tab(
-                            icon: Icon(Icons.medical_services),
-                            text: "Consulta",
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              
+                                Icon(Icons.medical_services,
+                                  color: controller.pageIndex == 2? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                ),
+                                Text( "Consulta",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: controller.pageIndex == 2? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                  ),
+                                ),
+                              
+                            ],
                           ),
                         ),
                       ),
@@ -140,9 +185,24 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                                 : Theme.of(context).colorScheme.surface,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: const Tab(
-                            icon: Icon(Icons.person),
-                            text: "Usuário",
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              
+                                Icon(Icons.person,
+                                  color: controller.pageIndex == 3? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                ),
+                                Text( "Usuário",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: controller.pageIndex == 3? Theme.of(context).colorScheme.onPrimary : 
+                                    Theme.of(context).colorScheme.onSecondary
+                                  ),
+                                ),
+                              
+                            ],
                           ),
                         ),
                       ),

@@ -66,7 +66,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchStore> {
                         context,
                         const Text("Buscar Paciente",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             )), () {

@@ -117,7 +117,7 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                           child: Row(
                             children: [
                               Container(
-                                width: _width * .15,
+                                width: _width * .14,
                                 height: 40,
                                 alignment: Alignment.center,
                                 padding: const EdgeInsets.only(left: 10),
@@ -152,13 +152,13 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                               ),
                               Container(
                                 //********************************************************* Selecionar arquivo */
-                                width: _width * .07,
+                                width: _width * .06,
                                 height: 40,
                                 child: elevatedButton(
                                     context,
-                                    const Text("Selecionar",
+                                    const Text("Buscar",
                                         style: TextStyle(
-                                          fontSize: 12,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         )), () async {
