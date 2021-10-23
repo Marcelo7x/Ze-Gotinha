@@ -59,6 +59,10 @@ abstract class HomeEnfermeiroStoreBase with Store implements Disposable {
     final _bd = Modular.get<BD>(defaultValue: BD());
     var user = _bd.searchUsers(s: "12345678901");
     user![0].addEnfermeiro(corem);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("paciente", user[0].cpf);
+                                
     return true;
   }
 }

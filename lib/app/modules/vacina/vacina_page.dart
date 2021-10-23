@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ze_gotinha/app/modules/home/home_store.dart';
+import 'package:ze_gotinha/app/modules/home_enfermeiro/home_enfermeiro_module.dart';
 import 'package:ze_gotinha/app/modules/home_enfermeiro/home_enfermeiro_store.dart';
 import 'package:ze_gotinha/app/modules/vacina/vacina_store.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
@@ -137,6 +138,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                   controller.setVacina(
                       vacina, _dose.text, _data.text, _lote.text);
                   Navigator.pop(context);
+                  _popup(context, "Vacina confirmada");
                 }),
               ],
             ),
@@ -166,6 +168,15 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                 const Text("voltar"),
               ],
             ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(10),
+            height: 60,
+            child: elevatedButton(context, const Text("Ver vacinas aplicadas"),
+                () {
+              //Modular.get(defaultValue: HomeEnfermeiroStore()).setIndex(1);
+              //Navigator.pushNamed(context,"./cartao/");
+            }),
           ),
           Container(
             //********************************************************** Search */
@@ -226,28 +237,42 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                     return Container(
                       height: _height * .5,
                       width: _width * .45,
-                      child: ListView(
-                          children: controller.vacina != null
-                              ? controller.vacina!
-                                  .map(
-                                    (vacina) => ListTile(
-                                      title: Text(vacina),
-                                      enableFeedback: true,
-                                      onTap: () {
-                                        _setVacina(vacina);
-                                      },
+                      padding: const EdgeInsets.only(top: 20),
+                      child: SingleChildScrollView(
+                        child: DataTable(
+                            showCheckboxColumn: false,
+                            columns: const [
+                              DataColumn(
+                                label: Text(
+                                  "Nome da Vacina",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                            rows: controller.vacina != null
+                                ? controller.vacina!
+                                    .map(
+                                      (vacina) => DataRow(
+                                          onSelectChanged: (s) async {
+                                            _setVacina(vacina);
+                                          },
+                                          cells: <DataCell>[
+                                            DataCell(Text(vacina))
+                                          ]),
+                                    )
+                                    .toList()
+                                : [
+                                    const DataRow(
+                                      cells: [
+                                        DataCell(
+                                          Text("-----"),
+                                        ),
+                                      ],
                                     ),
-                                  )
-                                  .toList()
-                              : [
-                                  const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: ListTile(
-                                      title: Text("Vacinas",
-                                          style: TextStyle(fontSize: 20)),
-                                    ),
-                                  ),
-                                ]),
+                                  ]),
+                      ),
                     );
                   }),
                 ],
@@ -258,4 +283,25 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
       ),
     );
   }
+}
+
+_popup(BuildContext context, String msg) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: Text(msg),
+      actions: [
+        elevatedButton(
+            context,
+            const Text("OK",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                )), () {
+          Navigator.pop(context);
+        }),
+      ],
+    ),
+  );
 }
