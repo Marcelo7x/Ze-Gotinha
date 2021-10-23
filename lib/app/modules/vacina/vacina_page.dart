@@ -138,7 +138,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                   controller.setVacina(
                       vacina, _dose.text, _data.text, _lote.text);
                   Navigator.pop(context);
-                  _popup(context, "Vacina confirmada");
+                  _popup(context, "Aplicação cadastrada com sucesso");
                 }),
               ],
             ),

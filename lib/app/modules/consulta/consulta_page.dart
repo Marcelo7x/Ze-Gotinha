@@ -47,8 +47,7 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 )), () {
-                          Modular.to
-                              .pushNamed("/home/consulta/historico/");
+                          Modular.to.pushNamed("/home/consulta/historico/");
                         })),
                     Padding(
                       padding: const EdgeInsets.only(left: 50),
@@ -210,7 +209,9 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
-                                )), () {
+                                )), () async {
+                          await _popup(
+                              context, "Consulta cancelada com sucesso");
                           Modular.to.pushNamed("/home/");
                         })),
                   ),
@@ -218,4 +219,25 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
               ),
             ]));
   }
+}
+
+_popup(BuildContext context, String msg) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: Text(msg),
+      actions: [
+        elevatedButton(
+            context,
+            const Text("OK",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                )), () {
+          Navigator.pop(context);
+        }),
+      ],
+    ),
+  );
 }
