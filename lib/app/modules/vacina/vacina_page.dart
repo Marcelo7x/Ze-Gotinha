@@ -34,7 +34,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
       return user;
     }
 
-    //var _vacinas = controller.getVacinas();
+    List<String>? _vacinas = controller.getVacinas();
     _setVacina(String vacina) {
       showDialog(
         context: context,
@@ -227,7 +227,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                       height: _height * .5,
                       width: _width * .45,
                       child: ListView(
-                          children: controller.vacina!.length != 0
+                          children: controller.vacina != null
                               ? controller.vacina!
                                   .map(
                                     (vacina) => ListTile(

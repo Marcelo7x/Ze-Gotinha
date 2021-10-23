@@ -29,15 +29,16 @@ abstract class VacinaStoreBase with Store {
     print(user.first.cartaoVacina);
   }
 
-  getVacinas({String s = ""}) {
+  List<String>? getVacinas({String s = ""}) {
     //gera lista de pacientes
     final _bd = Modular.get<BD>(defaultValue: BD());
-    var _users = _bd.searchVacinas(s: s);
+    List<Vacina>? _users = _bd.searchVacinas(s: s);
 
     List<String>? v;
-
-    for (var element in _users!) {
-      v != null ? v.add(element.nome) : v = [element.nome];
+    if (_users != null) {
+      for (var element in _users) {
+        v != null ? v.add(element.nome) : v = [element.nome];
+      }
     }
 
     vacina = v;

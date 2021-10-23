@@ -81,7 +81,7 @@ class BD {
 
   List<Vacina>? searchVacinas({String s = ""}) {
     if (s == "") {
-      return _vacinas;
+      return null;
     }
 
     List<Vacina>? list;

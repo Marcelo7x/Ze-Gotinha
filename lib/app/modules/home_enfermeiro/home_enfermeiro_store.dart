@@ -11,14 +11,14 @@ class HomeEnfermeiroStore = HomeEnfermeiroStoreBase with _$HomeEnfermeiroStore;
 
 abstract class HomeEnfermeiroStoreBase with Store implements Disposable {
   String? enfermeiro;
-  
+
   @action
   getUser() async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      final user = await prefs.getString("user");
-      this.enfermeiro = user;
-    }
-  
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final user = await prefs.getString("user");
+    this.enfermeiro = user;
+  }
+
   final pageViewController = PageController();
 
   @override
@@ -51,17 +51,14 @@ abstract class HomeEnfermeiroStoreBase with Store implements Disposable {
   @action
   setQR({bool? q}) {
     qr = q ?? !qr;
-    
   }
 
   vinculo(int corem) async {
     await Future.delayed(const Duration(seconds: 2));
-   
+
     final _bd = Modular.get<BD>(defaultValue: BD());
     var user = _bd.searchUsers(s: "12345678901");
     user![0].addEnfermeiro(corem);
-    
-    setIndex(1);
-    return Modular.to.navigate("/home-enfermeiro/vacina/");
+    return true;
   }
 }

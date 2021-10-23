@@ -38,7 +38,12 @@ class _HomeEnfermeiroPageState
                   ), () async {
                 controller.setQR(q: true);
                 await controller.getUser();
-                await controller.vinculo(int.parse(controller.enfermeiro!));
+                if (await controller
+                    .vinculo(int.parse(controller.enfermeiro!))) {
+                  await _popup(context, "Paciente Vinculado com Sucesso");
+                  controller.setIndex(1);
+                  Modular.to.navigate("/home-enfermeiro/vacina/");
+                }
                 controller.setQR(q: false);
               }),
             ),
@@ -103,7 +108,8 @@ class _HomeEnfermeiroPageState
                     return GestureDetector(
                       onTap: () async {
                         if (await _buscaPaciente() == false) {
-                          _pacienteErro(context);
+                          _popup(context,
+                              "Selecione um paciente que já esteja vinculado e tente novamente.");
                         } else {
                           controller.setIndex(1);
                           controller.getPage(1);
@@ -189,12 +195,11 @@ Future<bool> _buscaPaciente() async {
   return cpf == null ? false : true;
 }
 
-_pacienteErro(BuildContext context) {
+_popup(BuildContext context, String msg) {
   return showDialog(
     context: context,
     builder: (BuildContext context) => AlertDialog(
-      title: Text(
-          "Selecione um paciente que já esteja vinculado e tente novamente."),
+      title: Text(msg),
       actions: [
         elevatedButton(
             context,
