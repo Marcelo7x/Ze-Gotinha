@@ -6,6 +6,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ze_gotinha/app/modules/class/loggin.dart';
 import 'package:ze_gotinha/app/modules/consulta/consulta_store.dart';
+import 'package:ze_gotinha/app/modules/home/home_store.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
 
 class ConsultaPage extends StatefulWidget {
@@ -62,6 +63,7 @@ class _ConsultaPageState extends ModularState<ConsultaPage, ConsultaStore> {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   )), () {
+                            Modular.get(defaultValue: HomeStore()).setIndex(1);
                             Modular.to.pushNamed("/home/vacina/");
                           })),
                     ),
