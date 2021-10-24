@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,6 +58,11 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                     //login
                     controller: _dose,
                     autofocus: true,
+                    maxLength: 1,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'[0-9]')),
+                    ],
                     decoration: InputDecoration(
                       labelText: "Dose",
                       border: InputBorder.none,
@@ -75,10 +81,33 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                         left: Radius.circular(16), right: Radius.circular(16)),
                     color: Colors.white,
                     border: Border.all(color: Colors.black)),
-                child: TextField(
+                child: TextField(//********************************************************************* Data */
                     //login
                     controller: _data,
-                    autofocus: true,
+                    focusNode: AlwaysDisabledFocusNode(),
+                    onTap: () => showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2019, 1),
+                            lastDate: DateTime(2021, 12),
+                            builder: (context, picker) {
+                              return Theme(
+                                //TODO: change colors
+                                data: ThemeData.dark().copyWith(
+                                  colorScheme: const ColorScheme.dark(
+                                    primary: Colors.pink,
+                                    onPrimary: Colors.white,
+                                    surface: Colors.blue,
+                                    onSurface: Colors.white,
+                                  ),
+                                  dialogBackgroundColor: Colors.blueAccent[150],
+                                ),
+                                child: picker!,
+                              );
+                            }).then((pickedDate) {
+                          _data.text =
+                              "${pickedDate!.day}-${pickedDate.month}-${pickedDate.year}";
+                        }),
                     decoration: InputDecoration(
                       labelText: "Data",
                       border: InputBorder.none,
@@ -101,6 +130,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                     //login
                     controller: _lote,
                     autofocus: true,
+                    maxLength: 8,
                     decoration: InputDecoration(
                       labelText: "Lote",
                       border: InputBorder.none,
@@ -178,7 +208,6 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
               } else {
                 Modular.to.pushNamed("/home-enfermeiro/cartao/");
               }
-
             }),
           ),
           Container(
@@ -227,8 +256,8 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
                             )), () {
                       controller.getVacinas(s: _searchController.text);
                       if (controller.vacina == null) {
-                        _popup(
-                            context, "A vacina não foi encontrada.\nVerifique o nome e tente novamente.");
+                        _popup(context,
+                            "A vacina não foi encontrada.\nVerifique o nome e tente novamente.");
                       }
                     })),
               ],
@@ -311,4 +340,9 @@ _popup(BuildContext context, String msg) {
       ],
     ),
   );
+}
+
+class AlwaysDisabledFocusNode extends FocusNode {
+  @override
+  bool get hasFocus => false;
 }

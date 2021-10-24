@@ -195,6 +195,7 @@ class _ReceitaPageState extends ModularState<ReceitaPage, ReceitaStore> {
                                 keyboardType: TextInputType.number,
                                 controller: _qtd,
                                 autofocus: true,
+                                maxLength: 3,
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
                                       RegExp(r'[0-9]')),

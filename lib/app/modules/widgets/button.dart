@@ -6,6 +6,7 @@ Widget elevatedButton(
 
   return ElevatedButton(
       onPressed: function,
+      autofocus: true,
       style: ButtonStyle(
         shape: MaterialStateProperty.all(const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)))),
