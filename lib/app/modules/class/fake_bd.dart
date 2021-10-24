@@ -33,7 +33,7 @@ class BD {
     List<Usuario>? list;
 
     for (var element in _users) {
-      if (element.name.toLowerCase().compareTo(s.toLowerCase()) == 0 ||
+      if (element.name.toLowerCase().contains(s.toLowerCase()) ||
           element.cpf.toLowerCase().compareTo(s.toLowerCase()) == 0) {
         list != null ? list.add(element) : list = [element];
       }
@@ -88,7 +88,7 @@ class BD {
 
     List<Vacina>? list;
     for (var element in _vacinas) {
-      if (element.nome.toLowerCase().compareTo(s.toLowerCase()) == 0) {
+      if (element.nome.toLowerCase().contains(s.toLowerCase())) {
         list != null ? list.add(element) : list = [element];
       }
     }
