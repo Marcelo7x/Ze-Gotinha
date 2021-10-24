@@ -1,10 +1,8 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ze_gotinha/app/modules/home/home_store.dart';
-import 'package:ze_gotinha/app/modules/home_enfermeiro/home_enfermeiro_module.dart';
 import 'package:ze_gotinha/app/modules/home_enfermeiro/home_enfermeiro_store.dart';
 import 'package:ze_gotinha/app/modules/vacina/vacina_store.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
@@ -35,7 +33,7 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
       return user;
     }
 
-    List<String>? _vacinas = controller.getVacinas();
+    //List<String>? _vacinas = controller.getVacinas();
     _setVacina(String vacina) {
       showDialog(
         context: context,

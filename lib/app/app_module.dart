@@ -4,7 +4,6 @@ import 'package:ze_gotinha/app/modules/class/loggin.dart';
 import 'package:ze_gotinha/app/modules/consulta/submodules/receita/receita_module.dart';
 import 'package:ze_gotinha/app/modules/login/login_module.dart';
 import 'package:ze_gotinha/app/modules/widgets/button.dart';
-
 import 'modules/consulta/consulta_module.dart';
 import 'modules/consulta/consulta_store.dart';
 import 'modules/home/home_module.dart';

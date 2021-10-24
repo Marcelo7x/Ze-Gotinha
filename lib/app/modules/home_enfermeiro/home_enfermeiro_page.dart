@@ -41,10 +41,10 @@ class _HomeEnfermeiroPageState
                 if (await controller
                     .vinculo(int.parse(controller.enfermeiro!))) {
                   await _popup(context, "Paciente Vinculado com Sucesso");
-                  controller.setIndex(1);
-                  Modular.to.navigate("/home-enfermeiro/vacina/");
+                  await controller.setIndex(1);
+                  Modular.to.pushNamed("/home-enfermeiro/vacina/");
+                  controller.setQR(q: false);
                 }
-                controller.setQR(q: false);
               }),
             ),
             Observer(builder: (_) {

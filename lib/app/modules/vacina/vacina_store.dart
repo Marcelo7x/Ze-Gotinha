@@ -10,7 +10,7 @@ class VacinaStore = VacinaStoreBase with _$VacinaStore;
 
 abstract class VacinaStoreBase with Store {
   @observable
-  List<String>? vacina = []; //paciente selecionado
+  List<String>? vacina; //paciente selecionado
 
   @action
   setVacina(String vacina, String dose, String data, String lote) async {

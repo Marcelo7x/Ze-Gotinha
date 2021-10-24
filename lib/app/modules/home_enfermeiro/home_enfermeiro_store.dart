@@ -54,7 +54,6 @@ abstract class HomeEnfermeiroStoreBase with Store implements Disposable {
   }
 
   vinculo(int corem) async {
-    await Future.delayed(const Duration(seconds: 2));
 
     final _bd = Modular.get<BD>(defaultValue: BD());
     var user = _bd.searchUsers(s: "12345678901");
@@ -63,6 +62,7 @@ abstract class HomeEnfermeiroStoreBase with Store implements Disposable {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString("paciente", user[0].cpf);
                                 
+    await Future.delayed(const Duration(seconds: 2));
     return true;
   }
 }
