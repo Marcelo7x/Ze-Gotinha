@@ -21,6 +21,8 @@ class _HomeEnfermeiroPageState
     double _height = MediaQuery.of(context).size.height; //screen height
     double _width = MediaQuery.of(context).size.width; //screen width
 
+    final _image = "https://cdn-icons-png.flaticon.com/512/714/714390.png";
+
     _searchPageEnfermeiro() {
       return Container(
         height: _height * .7,
@@ -49,10 +51,10 @@ class _HomeEnfermeiroPageState
             ),
             Observer(builder: (_) {
               return Container(
-                width: _height * .25,
-                height: _height * .25,
-                color: controller.qr ? Colors.black : Colors.white,
-              );
+                  width: _height * .25,
+                  height: _height * .25,
+                  //color: controller.qr ? Colors.black : Colors.white,
+                  child: controller.qr ? Image.network(_image) : Container());
             })
           ],
         ),
@@ -161,20 +163,25 @@ class _HomeEnfermeiroPageState
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              
-                                Icon(Icons.document_scanner_outlined,
-                                  color: controller.pageIndex == 1? Theme.of(context).colorScheme.onPrimary : 
-                                    Theme.of(context).colorScheme.onSecondary
-                                ),
-                                Text( "Cartão de Vacina",
-                                  style: TextStyle(
+                              Icon(Icons.document_scanner_outlined,
+                                  color: controller.pageIndex == 1
+                                      ? Theme.of(context).colorScheme.onPrimary
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary),
+                              Text(
+                                "Cartão de Vacina",
+                                style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
-                                    color: controller.pageIndex == 1? Theme.of(context).colorScheme.onPrimary : 
-                                    Theme.of(context).colorScheme.onSecondary
-                                  ),
-                                ),
-                              
+                                    color: controller.pageIndex == 1
+                                        ? Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary
+                                        : Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary),
+                              ),
                             ],
                           ),
                         ),
@@ -197,23 +204,28 @@ class _HomeEnfermeiroPageState
                                 : Theme.of(context).colorScheme.surface,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child:Column(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              
-                                Icon(Icons.person,
-                                  color: controller.pageIndex == 3? Theme.of(context).colorScheme.onPrimary : 
-                                    Theme.of(context).colorScheme.onSecondary
-                                ),
-                                Text( "Usuário",
-                                  style: TextStyle(
+                              Icon(Icons.person,
+                                  color: controller.pageIndex == 3
+                                      ? Theme.of(context).colorScheme.onPrimary
+                                      : Theme.of(context)
+                                          .colorScheme
+                                          .onSecondary),
+                              Text(
+                                "Usuário",
+                                style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
-                                    color: controller.pageIndex == 3? Theme.of(context).colorScheme.onPrimary : 
-                                    Theme.of(context).colorScheme.onSecondary
-                                  ),
-                                ),
-                              
+                                    color: controller.pageIndex == 3
+                                        ? Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary
+                                        : Theme.of(context)
+                                            .colorScheme
+                                            .onSecondary),
+                              ),
                             ],
                           ),
                         ),

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 Widget elevatedButton(
     BuildContext context, Text label, void Function() function,
-    {double? textSize, Color? color}) {
+    {double? textSize, Color? color, bool? autofocus}) {
 
   return ElevatedButton(
       onPressed: function,
-      autofocus: true,
+      autofocus: autofocus?? false,
       style: ButtonStyle(
         shape: MaterialStateProperty.all(const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)))),
