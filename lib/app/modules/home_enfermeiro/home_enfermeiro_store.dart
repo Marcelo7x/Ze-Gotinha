@@ -31,7 +31,7 @@ abstract class HomeEnfermeiroStoreBase with Store implements Disposable {
     if (index == 0) {
       setQR(q: false);
     } else if (index == 1) {
-      return Modular.to.pushNamed("./cartao_vacina/");
+      return Modular.to.pushNamed("./cartao/");
     } else if (index == 2) {
       return Modular.to.pushNamed("./consulta/");
     }

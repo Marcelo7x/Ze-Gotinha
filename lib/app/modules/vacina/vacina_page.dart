@@ -171,9 +171,14 @@ class _VacinaPageState extends ModularState<VacinaPage, VacinaStore> {
             padding: const EdgeInsets.all(10),
             height: 60,
             child: elevatedButton(context, const Text("Ver vacinas aplicadas"),
-                () {
+                () async {
               //Modular.get(defaultValue: HomeEnfermeiroStore()).setIndex(1);
-              //Navigator.pushNamed(context,"./cartao/");
+              if (await getUser() == "medico") {
+                Modular.to.pushNamed("/home/cartao_vacina/");
+              } else {
+                Modular.to.pushNamed("/home-enfermeiro/cartao/");
+              }
+
             }),
           ),
           Container(

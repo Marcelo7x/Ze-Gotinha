@@ -25,7 +25,7 @@ class HomeEnfermeiroModule extends Module {
    ModuleRoute("/vacina", module: VacinaModule()),
    ModuleRoute("/consulta", module: ConsultaModule()),
    ModuleRoute("/search", module: SearchModule()),
-   ModuleRoute("/cartao_vacina", module: CartaoVacinaModule()),
+   ModuleRoute("/cartao", module: CartaoVacinaModule()),
 
    ])
  ];
