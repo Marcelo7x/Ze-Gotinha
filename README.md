@@ -1,2 +1,2 @@
 # Ze-Gotinha
-Gotinha na boquinha
+Trabalho final de Engenharia de Software - UFV utilizando flutter/dart.
